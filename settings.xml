@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+	http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+	<!-- mirror with Nexus local proxy repository -->
+	<mirrors>
+		<mirror>
+			<id>nexus_local</id>
+			<name>Nexus local proxy repository</name>
+			<url>http://localhost:8080/Nexus/content/groups/public</url>
+			<mirrorOf>*</mirrorOf>
+		</mirror>
+	</mirrors>
+
+	<!-- cover the supper POM's central repository's setting on disable snapshot 
+		version -->
+	<profiles>
+		<profile>
+			<id>nexus</id>
+			<repositories>
+				<repository>
+					<id>central</id>
+					<name>cover central with snapshot opening</name>
+					<url>http://dontcare</url>
+					<layout>default</layout>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+
+			<pluginRepositories>
+				<pluginRepository>
+					<id>central</id>
+					<name>cover plugin central with snapshot opening</name>
+					<url>http://dontcare</url>
+					<layout>default</layout>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+	</profiles>
+
+	<activeProfiles>
+		<activeProfile>nexus</activeProfile>
+	</activeProfiles>
+
+</settings>

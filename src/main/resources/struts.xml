@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="ownphone" extends="struts-default">
+
+		<!-- OwnPhone order management -->
+		<action name="order" class="com.ownphone.content.action.OrderAction">
+			<!-- login validation -->
+			<result name="validateloginfailed">/pleaselogin.jsp</result>
+
+			<!-- privilege error -->
+			<result name="privilegeerror">/showresuletmessage.jsp</result>
+
+			<!-- addOwnPhoneOrder -->
+			<result name="addfeedback">/showresultmessage.jsp</result>
+			<result name="validateaddingorderfailed">/portal/designyourownphone.jsp</result>
+
+			<!-- showCommonUserOwnPhoneOrders -->
+			<result name="findownphoneorderserror">/showresultmessage.jsp</result>
+			<result name="findcommonuserownphoneorderssuccess">/backstage/commonuser/ownphoneordermanagement.jsp
+			</result>
+
+			<!-- showAdministratorOwnPhoneOrders -->
+			<result name="findadminownphoneorderssuccess">/backstage/administrator/ownphoneordermanagement.jsp
+			</result>
+
+			<!-- showOwnPhoneOrderByOrderNumber -->
+			<result name="requesterror">/showresultmessage.jsp</result>
+			<result name="findownphoneordererror">/showresultmessage.jsp</result>
+			<result name="findownphoneordererror">/showresultmessage.jsp</result>
+			<result name="findcommonuserownphoneordersuccess">/backstage/commonuser/modifyownphoneorder.jsp
+			</result>
+			<result name="findadminownphoneordersuccess">/backstage/administrator/modifyownphoneorder.jsp
+			</result>
+
+			<!-- modifyOwnPhoneOrder -->
+			<result name="validatecommonusermodifyingorderfailed">/backstage/commonuser/modifyownphoneorder.jsp
+			</result>
+			<result name="validateadminmodifyingorderfailed">/backstage/administrator/modifyownphoneorder.jsp
+			</result>
+			<result name="ownphoneordernotexisted">/showresultmessage.jsp</result>
+			<result name="modifyfeedback">/showresultmessage.jsp</result>
+		</action>
+
+		<!-- Login management -->
+		<action name="login" class="com.ownphone.content.action.LoginAction">
+			<result name="commonuserloginsuccess">/index.jsp</result>
+			<result name="adminloginsuccess">/index.jsp</result>
+			<result name="loginfailed">/index.jsp</result>
+			<result name="input">/index.jsp</result>
+		</action>
+
+		<!-- Administrator management -->
+		<action name="administrator" class="com.ownphone.content.action.AdministratorAction">
+			<!-- login validation -->
+			<result name="validateloginfailed">/pleaselogin.jsp</result>
+
+			<!-- modifyAccountInfo -->
+			<result name="modifyaccountinfosuccess">/backstage/administrator/modifyaccountinfo.jsp
+			</result>
+			<result name="modifyaccountinfofailed">/backstage/administrator/modifyaccountinfo.jsp
+			</result>
+			<result name="validateaccountinfofailed">/backstage/administrator/modifyaccountinfo.jsp
+			</result>
+
+			<!-- modifyAccountPassword -->
+			<result name="modifyaccountpasswordsuccess">/backstage/administrator/modifyaccountpassword.jsp
+			</result>
+			<result name="modifyaccountpasswordfailed">/backstage/administrator/modifyaccountpassword.jsp
+			</result>
+			<result name="validateaccountpasswordfailed">/backstage/administrator/modifyaccountpassword.jsp
+			</result>
+			<result name="validateoldpasswordfailed">/backstage/administrator/modifyaccountpassword.jsp
+			</result>
+		</action>
+
+		<!-- CommonUser management -->
+		<action name="commonuser" class="com.ownphone.content.action.CommonUserAction">
+			<!-- login validation -->
+			<result name="validateloginfailed">/pleaselogin.jsp</result>
+
+			<!-- modifyAccountInfo -->
+			<result name="modifyaccountinfosuccess">/backstage/commonuser/modifyaccountinfo.jsp
+			</result>
+			<result name="modifyaccountinfofailed">/backstage/commonuser/modifyaccountinfo.jsp
+			</result>
+			<result name="validateaccountinfofailed">/backstage/commonuser/modifyaccountinfo.jsp
+			</result>
+
+			<!-- modifyAccountPassword -->
+			<result name="modifyaccountpasswordsuccess">/backstage/commonuser/modifyaccountpassword.jsp
+			</result>
+			<result name="modifyaccountpasswordfailed">/backstage/commonuser/modifyaccountpassword.jsp
+			</result>
+			<result name="validateaccountpasswordfailed">/backstage/commonuser/modifyaccountpassword.jsp
+			</result>
+			<result name="validateoldpasswordfailed">/backstage/commonuser/modifyaccountpassword.jsp
+			</result>
+		</action>
+
+		<!-- Register management -->
+		<action name="register" class="com.ownphone.content.action.RegisterAction">
+			<result name="registersuccess">/showresultmessage.jsp</result>
+			<result name="registerfailed">/showresultmessage.jsp</result>
+			<result name="input">/portal/register.jsp</result>
+		</action>
+
+
+	</package>
+</struts>

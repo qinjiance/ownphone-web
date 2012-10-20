@@ -1,0 +1,9 @@
+# files and directories will not included into git
+
+# files and directories related to eclipse IDE
+.settings/
+target/
+.classpath
+.project
+
+

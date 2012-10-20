@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="cx" location="465,165" size="280,700">
+    <action name="art" location="65,61" size="150,104">
+      <result name="default">
+        <resourceEdge source="default" routing="0" target="contentlist.jsp" />
+      </result>
+      <result name="toupdate">
+        <resourceEdge source="toupdate" routing="0" target="contentupdate.jsp" />
+      </result>
+      <result name="defaultindex">
+        <resourceEdge source="defaultindex" routing="0" target="main.jsp" />
+      </result>
+      <result name="vart">
+        <resourceEdge source="vart" routing="0" target="viewarticle.jsp" />
+      </result>
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="inputError.jsp" />
+      </result>
+    </action>
+    <action name="cart" location="0,0" size="0,0">
+      <result name="default">
+        <resourceEdge source="default" routing="0" target="zhuantibaogao.jsp" />
+      </result>
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="inputError.jsp" />
+      </result>
+    </action>
+    <action name="que" location="65,386" size="150,83">
+      <result name="default">
+        <resourceEdge source="default" routing="0" target="questionlist.jsp" />
+      </result>
+      <result name="noright">
+        <resourceEdge source="noright" routing="0" target="login.jsp" />
+      </result>
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="inputError.jsp" />
+      </result>
+    </action>
+    <action name="stu" location="65,561" size="150,83">
+      <result name="teacherlogin">
+        <resourceEdge source="teacherlogin" routing="0" target="teacherdirectory.jsp" />
+      </result>
+      <result name="default">
+        <resourceEdge source="default" routing="0" target="index.jsp" />
+      </result>
+      <result name="online">
+        <resourceEdge source="online" routing="0" target="onlineexam.jsp" />
+      </result>
+      <result name="zy">
+        <resourceEdge source="zy" routing="0" target="zyonlineexam.jsp" />
+      </result>
+      <result name="dk">
+        <resourceEdge source="dk" routing="0" target="dkonlineexam.jsp" />
+      </result>
+      <result name="lx">
+        <resourceEdge source="lx" routing="0" target="lxonlineexam.jsp" />
+      </result>
+      <result name="cx">
+        <resourceEdge source="cx" routing="0" target="chengjichaxun.jsp" />
+      </result>
+      <result name="adminlogin">
+        <resourceEdge source="adminlogin" routing="0" target="contentadd.jsp" />
+      </result>
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="contentlist.jsp" />
+      </result>
+    </action>
+    <action name="tea" location="0,0" size="0,0">
+      <result name="default">
+        <resourceEdge source="default" routing="0" target="teacherdirectory.jsp" />
+      </result>
+      <result name="sli">
+        <resourceEdge source="sli" routing="0" target="studentlist.jsp" />
+      </result>
+      <result name="sre">
+        <resourceEdge source="sre" routing="0" target="studentreviewlist.jsp" />
+      </result>
+      <result name="srs">
+        <resourceEdge source="srs" routing="0" target="studentresultlist.jsp" />
+      </result>
+      <result name="sup">
+        <resourceEdge source="sup" routing="0" target="studentupdate.jsp" />
+      </result>
+      <result name="noright">
+        <resourceEdge source="noright" routing="0" target="login.jsp" />
+      </result>
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="indexError.jsp" />
+      </result>
+    </action>
+    <action name="test" location="0,0" size="0,0">
+      <result name="zhuany">
+        <resourceEdge source="zhuany" routing="0" target="zhuanyuexam.jsp" />
+      </result>
+      <result name="noright">
+        <resourceEdge source="noright" routing="0" target="login.jsp" />
+      </result>
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="inputError.jsp" />
+      </result>
+    </action>
+    <action name="lo" location="0,0" size="0,0">
+      <result name="default">
+        <resourceEdge source="default" routing="0" target="index.jsp" />
+      </result>
+      <result name="noright">
+        <resourceEdge source="noright" routing="0" target="login.jsp" />
+      </result>
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="zhuce.jsp" />
+      </result>
+    </action>
+  </package>
+  <webResource name="contentlist.jsp" path="/backstage/Article/contentlist.jsp" location="515,10" size="150,55" />
+  <webResource name="contentupdate.jsp" path="/backstage/Article/contentupdate.jsp" location="224,430" size="150,55" />
+  <webResource name="login.jsp" path="/login.jsp" location="555,920" size="150,55" />
+  <webResource name="inputError.jsp" path="/inputError.jsp" location="65,535" size="150,55" />
+  <webResource name="questionlist.jsp" path="/backstage/Question/questionlist.jsp" location="786,535" size="150,55" />
+  <webResource name="zhuanyuexam.jsp" path="/portal/ZhuanYuExam/zhuanyuexam.jsp" location="813,710" size="150,55" />
+  <webResource name="index.jsp" path="/index.jsp" location="0,0" size="0,0" />
+  <webResource name="zhuce.jsp" path="/portal/zhuce.jsp" location="0,0" size="0,0" />
+  <webResource name="onlineexam.jsp" path="/portal/onlineexam.jsp" location="0,0" size="0,0" />
+  <webResource name="indexError.jsp" path="/indexError.jsp" location="0,0" size="0,0" />
+  <webResource name="main.jsp" path="/main.jsp" location="0,0" size="0,0" />
+  <webResource name="zyonlineexam.jsp" path="/portal/zyonlineexam.jsp" location="0,0" size="0,0" />
+  <webResource name="dkonlineexam.jsp" path="/portal/dkonlineexam.jsp" location="0,0" size="0,0" />
+  <webResource name="lxonlineexam.jsp" path="/portal/lxonlineexam.jsp" location="0,0" size="0,0" />
+  <webResource name="teacherdirectory.jsp" path="/backstage/Teacher/teacherdirectory.jsp" location="0,0" size="0,0" />
+  <webResource name="studentlist.jsp" path="/backstage/Teacher/studentlist.jsp" location="0,0" size="0,0" />
+  <webResource name="studentreviewlist.jsp" path="/backstage/Teacher/studentreviewlist.jsp" location="0,0" size="0,0" />
+  <webResource name="studentresultlist.jsp" path="/backstage/Teacher/studentresultlist.jsp" location="0,0" size="0,0" />
+  <webResource name="studentupdate.jsp" path="/backstage/Teacher/studentupdate.jsp" location="0,0" size="0,0" />
+  <webResource name="admindirectory.jsp" path="/backstage/Article/admindirectory.jsp" location="0,0" size="0,0" />
+  <webResource name="viewarticle.jsp" path="/portal/viewarticle.jsp" location="0,0" size="0,0" />
+  <webResource name="zhuantibaogao.jsp" path="/portal/zhuantibaogao.jsp" location="0,0" size="0,0" />
+  <webResource name="chengjichaxun.jsp" path="/portal/chengjichaxun.jsp" location="0,0" size="0,0" />
+  <webResource name="contentadd.jsp" path="/backstage/Article/contentadd.jsp" location="0,0" size="0,0" />
+</Struts2Diagram>
+
