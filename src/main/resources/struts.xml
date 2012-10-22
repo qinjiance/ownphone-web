@@ -102,9 +102,16 @@
 
 		<!-- Register management -->
 		<action name="register" class="com.ownphone.content.action.RegisterAction">
+			<!-- register -->
 			<result name="registersuccess">/showresultmessage.jsp</result>
 			<result name="registerfailed">/showresultmessage.jsp</result>
 			<result name="input">/portal/register.jsp</result>
+			
+			<!-- get captcha -->
+			<result name="getcaptchaimagesuccess" type="stream">
+				<param name="contentType">image/jpeg</param>
+				<param name="inputName">captchaImageIS</param>
+			</result>
 		</action>
 
 

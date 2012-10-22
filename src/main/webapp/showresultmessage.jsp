@@ -30,9 +30,9 @@
 
 				<div id="mainlayout">
 					<div style="height: 250px;"></div>
-
+					
 					<s:actionmessage cssClass="message"/>
-
+					
 					<div style="height: 250px;"></div>
 				</div>
 

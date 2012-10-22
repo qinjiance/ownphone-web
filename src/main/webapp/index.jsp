@@ -22,22 +22,22 @@
 
 <body>
 	<center>
-	<div class="pagebg">
-		<div class="bodybg">
-			<jsp:include page="/navigator.jsp">
-				<jsp:param value="<%=location%>" name="location" />
-			</jsp:include>
+		<div class="pagebg">
+			<div class="bodybg">
+				<jsp:include page="/navigator.jsp">
+					<jsp:param value="<%=location%>" name="location" />
+				</jsp:include>
 
-			<div id="mainlayout">
-				<div style="height:500px;"></div>
+				<div id="mainlayout">
+					<div style="height: 500px;"></div>
 
 
 
-				
+
+				</div>
+
+				<jsp:include page="/tailer.jsp" />
 			</div>
-			
-			<jsp:include page="/tailer.jsp" />
-		</div>
 		</div>
 	</center>
 </body>

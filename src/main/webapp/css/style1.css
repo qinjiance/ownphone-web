@@ -196,7 +196,7 @@
 
 body {
 	margin: 0;
-	background-color: #CCCCCC;
+	background-color: #ffffff;
 }
 
 #mainlayout {
@@ -246,6 +246,7 @@ img {
 	margin: 50px;
 	border: 2px solid rgb(167, 232, 252);
 	font-size: 20px;
+	text-align: center;
 	color: #000000;
 	font-family: "微软雅黑";
 }
@@ -267,6 +268,7 @@ table.modifyaccountinfotable tbody>tr>td {
 	margin: 50px;
 	border: 2px solid rgb(167, 232, 252);
 	font-size: 20px;
+	text-align: center;
 	color: #000000;
 	font-family: "微软雅黑";
 }
@@ -332,6 +334,7 @@ table.registertable tbody>tr>td {
 	font-size: 40px;
 	color: #ff0000;
 	font-family: "微软雅黑";
+	text-align: center;
 }
 
 /* OwnPhoneOrder management */

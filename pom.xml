@@ -26,6 +26,7 @@
 		<log4j.version>1.2.14</log4j.version>
 		<org.slf4j.log4j12.version>1.5.8</org.slf4j.log4j12.version>
 		<commons.logging.version>1.1.1</commons.logging.version>
+		<com.google.code.kaptcha.version>2.3</com.google.code.kaptcha.version>
 	</properties>
 
 	<dependencies>
@@ -95,6 +96,13 @@
 			<artifactId>commons-logging</artifactId>
 			<version>${commons.logging.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.google.code.kaptcha</groupId>
+			<artifactId>kaptcha</artifactId>
+			<version>${com.google.code.kaptcha.version}</version>
+			<classifier>jdk15</classifier>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -141,7 +149,21 @@
 					</deployables>
 				</configuration>
 			</plugin>
-
 		</plugins>
 	</build>
+	
+	<repositories>
+		<repository>
+			<id>sonatype-forge</id>
+			<name>Sonatype Forge</name>
+			<url>https://repository.sonatype.org/content/groups/forge/</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 </project>

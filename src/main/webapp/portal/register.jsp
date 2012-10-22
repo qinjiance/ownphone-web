@@ -40,9 +40,6 @@
 								<tr>
 									<th colspan="3">请输入注册信息</th>
 								</tr>
-								<tr>
-									<td colspan="3"><s:fielderror fieldName="registererror" /></td>
-								</tr>
 							</thead>
 							<tbody>
 								<tr>
@@ -124,13 +121,27 @@
 											name="commonUserRegister.realname" size="30" label="真实姓名" /></td>
 									<td class="inputprompt">（中文姓名只能由中文组成，英文名只能由英文和它们中间的空格组成）</td>
 								</tr>
+								<tr>
+									<td></td>
+									<th colspan="2" align="left"><s:fielderror
+											fieldName="captchatext" /></th>
+								</tr>
+								<tr>
+									<td class="inputlabel">验证码：</td>
+									<td class="inputfield"><s:textfield name="captchatext"
+											size="10" label="验证码" /></td>
+									<td class="inputprompt"><img id="captchaImage"
+										src="<%=path%>/register!getCaptchaImage" alt="验证码" /> 
+										<a href="" onclick="document.getElementById('captchaImage').src='<%=path%>/register!getCaptchaImage?id=' + Math.random(); return false;">（看不清换一张？）</a>
+									</td>
+								</tr>
 							</tbody>
 							<tfoot>
 								<tr>
-									<td colspan="3"><s:submit value="注册" /></td>
+									<td colspan="3" align="center"><s:submit value="注册" /></td>
 								</tr>
 								<tr>
-									<td colspan="3"><s:reset value="重置" /></td>
+									<td colspan="3" align="center"><s:reset value="重置" /></td>
 								</tr>
 							</tfoot>
 						</table>
