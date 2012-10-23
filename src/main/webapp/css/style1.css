@@ -339,7 +339,7 @@ table.registertable tbody>tr>td {
 
 /* OwnPhoneOrder management */
 .ownphoneorderlisttable {
-	margin: 50px;
+	margin: 40px;
 	border-collapse: separate;
 	border: 5px solid rgb(175, 226, 105);
 	font-size: 15px;
@@ -408,19 +408,43 @@ table.ownphoneorderlisttable #modifylink a:hover {
 
 table.ownphoneorderlisttable #separatedpage{
 	background: rgb(89, 142, 222);
-	color:#ffffff;
+	color: #ffffff;
 }
+
 table.ownphoneorderlisttable #separatedpage a:link{
 	background: rgb(89, 142, 222);
-	color:#ffffff;
+	color: #ffffff;
 }
+
 table.ownphoneorderlisttable #separatedpage a:visited{
 	background: rgb(89, 142, 222);
-	color:#ffffff;
+	color: #ffffff;
 }
+
 table.ownphoneorderlisttable #separatedpage a:hover{
 	background: rgb(89, 142, 222);
-	color:#ffffff;
+	color: #ffffff;
+}
+
+table.ownphoneorderlisttable #ownphoneorderquerytd{
+	padding: 0;
+}
+
+table.ownphoneorderquerytable{
+	border: 0;
+	margin: 0;
+	border-collapse: collapse;
+	font-famili: 微软雅黑;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+table.ownphoneorderquerytable tr>td{
+	white-space: nowrap;
+	color: white;
+	background-color: rgb(124, 189, 36);
+	padding: 5px;
+	border-right: 1px solid white;
 }
 
 /* server statistic page */

@@ -50,12 +50,10 @@
 										<%
 											OwnPhoneOrder ownPhoneOrder = (OwnPhoneOrder) request
 																.getAttribute("ownPhoneOrderToShow");
-														long orderTimeMillis = ownPhoneOrder
-																.getOrdertimemillis().longValue();
-														Date orderDate = new Date(orderTimeMillis);
-														long modifyTimeMillis = ownPhoneOrder
-																.getModifytimemillis().longValue();
-														Date modifyDate = new Date(modifyTimeMillis);
+														Date orderDate = new Date(ownPhoneOrder
+																.getOrdertimemillis().longValue());
+														Date modifyDate = new Date(ownPhoneOrder
+																.getModifytimemillis().longValue());
 										%>
 										<tr>
 											<th

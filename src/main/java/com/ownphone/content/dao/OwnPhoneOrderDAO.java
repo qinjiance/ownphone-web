@@ -32,7 +32,7 @@ public interface OwnPhoneOrderDAO {
 	 * Find OwnPhoneOrders by belongtouseraccount field in database.
 	 * 
 	 * @param belongToUserAccount
-	 *            belongtouseraccount filed will be used to find.
+	 *            belongtouseraccount field will be used to find.
 	 * 
 	 * @return the OwnPhoneOrder list whos belongtouseraccount field's value is
 	 *         belongToUserAccount parameter, if no OwnPhoneOrder is belong to
@@ -46,10 +46,10 @@ public interface OwnPhoneOrderDAO {
 
 	/**
 	 * Find top starts-ends OwnPhoneOrders by belongtouseraccount field in
-	 * database.
+	 * database, then order them by modified time.
 	 * 
 	 * @param belongToUseraccount
-	 *            belongtouseraccount filed will be used to find.
+	 *            belongtouseraccount field will be used to find.
 	 * @param starts
 	 *            starts index to be used to count.
 	 * @param ends
@@ -61,8 +61,49 @@ public interface OwnPhoneOrderDAO {
 	 *             every hibernate operation exceptions will be wrapped in this
 	 *             union exception.
 	 */
-	public List<OwnPhoneOrder> findStartsToEndsOwnPhoneOrdersByBelongto(
+	public List<OwnPhoneOrder> findOwnPhoneOrdersOrderByModifiedTime(
 			String belongToUseraccount, int starts, int ends)
+			throws HibernateOperateException;
+
+	/**
+	 * Find OwnPhoneOrders by belongToUseraccount with conditions, including top
+	 * starts-ends, ordertype, orderdirectory, keypad, phonecolor, phonestyle,
+	 * emergency, price.
+	 * 
+	 * @param belongToUseraccount
+	 *            belongtouseraccount field will be used to find.
+	 * @param starts
+	 *            starts index to be used to count.
+	 * @param ends
+	 *            ends index to be used to count.
+	 * @param ordertype
+	 *            order type condition.
+	 * @param orderdirection
+	 *            order direction condition.
+	 * @param keypad
+	 *            keypad field condition.
+	 * @param phonecolor
+	 *            phonecolor field condition.
+	 * @param phonestyle
+	 *            phonestyle field condition.
+	 * @param emergency
+	 *            emergency field condition.
+	 * @param price
+	 *            price field condition.
+	 * @param ordertime
+	 *            ordertime field condition.
+	 * @return OwnPhoneOrders list whos belongtouseraccount field's value is
+	 *         belongToUserAccount parameter and with the conditions parameter,
+	 *         if no OwnPhoneOrder is belong to this useraccount and fulfilled
+	 *         the conditions, it will return null.
+	 * @throws HibernateOperateException
+	 *             every hibernate operation exceptions will be wrapped in this
+	 *             union exception.
+	 */
+	public List<OwnPhoneOrder> findOwnPhoneOrdersWithConditions(
+			String belongToUseraccount, int starts, int ends, String ordertype,
+			String orderdirection, String keypad, String phonecolor,
+			String phonestyle, String emergency, String price, String ordertime)
 			throws HibernateOperateException;
 
 	/**
@@ -94,12 +135,42 @@ public interface OwnPhoneOrderDAO {
 	 * Find the size of OwnPhoneOrders belong to certain useraccount.
 	 * 
 	 * @param belongToUserAccount
-	 *            belongtouseraccount filed will be used to find.
+	 *            belongtouseraccount field will be used to find.
 	 * @return the size of OwnPhoneOrders belong to certain useraccount,
 	 * @throws HibernateOperateException
 	 *             every hibernate operation exceptions will be wrapped in this
 	 *             union exception.
 	 */
 	public int sizeOfOwnPhoneOrdersByBelongto(String belongToUserAccount)
+			throws HibernateOperateException;
+
+	/**
+	 * Find the size of OwnPhoneOrders by belongToUseraccount with conditions,
+	 * including keypad, phonecolor, phonestyle, emergency, price.
+	 * 
+	 * @param belongToUseraccount
+	 *            belongtouseraccount field will be used to find.
+	 * @param keypad
+	 *            keypad field condition.
+	 * @param phonecolor
+	 *            phonecolor field condition.
+	 * @param phonestyle
+	 *            phonestyle field condition.
+	 * @param emergency
+	 *            emergency field condition.
+	 * @param price
+	 *            price field condition.
+	 * @param ordertime
+	 *            ordertime field condition.
+	 * @return the size of OwnPhoneOrders whos belongtouseraccount field value
+	 *         is belongToUserAccount parameter and fulfilled the conditions
+	 *         parameter.
+	 * @throws HibernateOperateException
+	 *             every hibernate operation exceptions will be wrapped in this
+	 *             union exception.
+	 */
+	public int sizeOfOwnPhoneOrdersWithConditions(String belongToUseraccount,
+			String keypad, String phonecolor, String phonestyle,
+			String emergency, String price, String ordertime)
 			throws HibernateOperateException;
 }

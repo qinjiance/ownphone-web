@@ -1,6 +1,9 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" 
+	import="com.ownphone.content.po.OwnPhoneOrder,java.util.Date" 
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -40,8 +43,48 @@
 							<table class="ownphoneorderlisttable">
 								<thead>
 									<tr>
-										<th colspan="12">我的订单列表</th>
+										<th colspan="10">我的订单列表</th>
 									</tr>
+									<s:form name="ownPhoneOrderQuery" action="order!showAdministratorOwnPhoneOrders" 
+											method="post" theme="simple" >
+									<tr>
+										<td id="ownphoneorderquerytd" colspan="10">
+											<table class="ownphoneorderquerytable">
+												<tr>
+													<td>排序类型：<br /><s:select name="ownPhoneOrderQuery.ordertype" 
+														value="%{#request.ownPhoneOrderQuery.ordertype}"
+														list="#{'orderedtime':'下单时间','modifiedtime':'修改时间'}" /></td>
+													<td>排序方向：<br /><s:select name="ownPhoneOrderQuery.orderdirection" 
+														value="%{#request.ownPhoneOrderQuery.orderdirection}"
+														list="#{'increasing':'升序','descending':'降序'}" /></td>
+													<td>按键数量：<br /><s:select name="ownPhoneOrderQuery.keypad" 
+														value="%{#request.ownPhoneOrderQuery.keypad}"
+														list="#{'':'所有','2':'2个','4':'4个','8':'8个','12':'12个'}" /></td>
+													<td>机身颜色：<br /><s:select name="ownPhoneOrderQuery.phonecolor" 
+														value="%{#request.ownPhoneOrderQuery.phonecolor}"
+														list="#{'':'所有','粉色':'粉色','蓝色':'蓝色','绿色':'绿色','红色':'红色','橘色':'橘色','黑色':'黑色'}" /></td>
+													<td>机身皮肤：<br /><s:select name="ownPhoneOrderQuery.phonestyle" 
+														value="%{#request.ownPhoneOrderQuery.phonestyle}"
+														list="#{'':'所有','朴素':'朴素','图片':'图片','花纹':'花纹'}" /></td>
+													<td>紧急呼叫按键：<br /><s:select name="ownPhoneOrderQuery.emergency" 
+														value="%{#request.ownPhoneOrderQuery.emergency}"
+														list="#{'':'所有','有':'有','无':'无'}" /></td>
+													<td>资费套餐：<br /><s:select name="ownPhoneOrderQuery.price" 
+														value="%{#request.ownPhoneOrderQuery.price}"
+														list="#{'':'所有','套餐50':'套餐50','套餐100':'套餐100','套餐500':'套餐500'}" /></td>
+													<td>下单时间：<br /><s:select name="ownPhoneOrderQuery.ordertime" 
+														value="%{#request.ownPhoneOrderQuery.ordertime}"
+														list="#{'':'所有','latestthreemonthes':'三个月内','threemonthesago':'三个月前'}" /></td>
+													<td>订单号查询：<br /><s:textfield name="ordernumberquery" size="11"
+														 maxlength="12" value="%{#request.ordernumberquery}" /></td>	
+														
+													<td><s:hidden id="pagehiddenfield" name="page" value="1"/>
+														<s:submit value="查询"/></td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+									</s:form>
 									<tr>
 										<td>序号</td>
 										<td>订单号</td>
@@ -55,15 +98,11 @@
 										</td>
 										<td>紧急呼叫<br />按键
 										</td>
-										<td>资费<br />套餐
+										<td>资费套餐
 										</td>
-										<td>借记卡<br />卡主
+										<td>下单时间
 										</td>
-										<td>开卡<br />银行
-										</td>
-										<td>银行<br />分行
-										</td>
-										<td>借记卡<br />账号
+										<td>最近修改
 										</td>
 									</tr>
 								</thead>
@@ -81,16 +120,19 @@
 											<td>${ownPhoneOrder.name}</td>
 											<td>${ownPhoneOrder.emergency}</td>
 											<td>${ownPhoneOrder.price}</td>
-											<td>${ownPhoneOrder.debithost}</td>
-											<td>${ownPhoneOrder.bank}</td>
-											<td>${ownPhoneOrder.branch}</td>
-											<td>${ownPhoneOrder.account}</td>
+											<% 
+												OwnPhoneOrder ownPhoneOrder = (OwnPhoneOrder)pageContext.getAttribute("ownPhoneOrder");
+												Date orderDate = new Date(ownPhoneOrder.getOrdertimemillis().longValue());
+												Date modifyDate = new Date(ownPhoneOrder.getModifytimemillis().longValue());;
+											%>
+											<td><fmt:formatDate value="<%=orderDate%>" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+											<td><fmt:formatDate value="<%=modifyDate%>" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 										</tr>
 									</c:forEach>
 								</tbody>
 								<tfoot>
 									<tr>
-										<td colspan="12">
+										<td colspan="10">
 											<span>总订单数：${requestScope.orderSize}</span>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											分页：
@@ -102,27 +144,35 @@
 											
 												if (pageSize <= 7) {
 													for (int i = 1; i <= pageSize; i++) {
-																if (i == currentPage) {
+														if (i == currentPage) {
 											%>
-																	<span id="separatedpage">
+															<span id="separatedpage">
 											<% 					
-																}
+														}
 											%> 			
-														<a href="<%=path%>/order!showAdministratorOwnPhoneOrders?page=<%=i%>"><%=i%></a>
+														<a href="<%=path%>/order!showAdministratorOwnPhoneOrders?page=<%=i%>" 
+															onclick="document.getElementById('pagehiddenfield').value='<%=i%>'; 
+															document.all.ownPhoneOrderQuery.submit();return false;">
+															<%=i%>
+														</a>
 											<% 
-																if (i == currentPage) {
+														if (i == currentPage) {
 											%>
-																	</span>
+															</span>
 											<% 					
-																}
+														}
 											%>
-																|
+														|
 											<%		} 
 												} else {
 														// 第1页
 														if (currentPage-3 >= 1) {
 											%>
-															<a href="<%=path%>/order!showAdministratorOwnPhoneOrders?page=1">1</a>
+															<a href="<%=path%>/order!showAdministratorOwnPhoneOrders?page=1" 
+																	onclick="document.getElementById('pagehiddenfield').value='1'; 
+																	document.all.ownPhoneOrderQuery.submit();return false;">
+																1
+															</a>
 															| 
 											<%
 															if (currentPage-3 > 1) {
@@ -142,7 +192,11 @@
 											<% 					
 																}
 											%>
-																<a href="<%=path%>/order!showAdministratorOwnPhoneOrders?page=<%=i%>"><%=i%></a>
+																<a href="<%=path%>/order!showAdministratorOwnPhoneOrders?page=<%=i%>" 
+																	onclick="document.getElementById('pagehiddenfield').value='<%=i%>'; 
+																	document.all.ownPhoneOrderQuery.submit();return false;">
+																	<%=i%>
+																</a>
 											<% 
 																if (i == currentPage) {
 											%>
@@ -164,7 +218,11 @@
 											<%					
 															}
 											%>				
-															<a href="<%=path%>/order!showAdministratorOwnPhoneOrders?page=<%=pageSize%>"><%=pageSize%></a>
+															<a href="<%=path%>/order!showAdministratorOwnPhoneOrders?page=<%=pageSize%>" 
+																onclick="document.getElementById('pagehiddenfield').value='<%=pageSize%>'; 
+																document.all.ownPhoneOrderQuery.submit();return false;">
+																<%=pageSize%>
+															</a>
 															|
 											<%				
 														}

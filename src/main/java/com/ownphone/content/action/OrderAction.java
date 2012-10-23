@@ -3,6 +3,7 @@
  */
 package com.ownphone.content.action;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.ownphone.content.bean.OwnPhoneOrderQueryForm;
 import com.ownphone.content.dao.HibernateOperateException;
 import com.ownphone.content.dao.OwnPhoneOrderDAO;
 import com.ownphone.content.dao.impl.OwnPhoneOrderDAOImpl;
@@ -48,6 +50,11 @@ public class OrderAction extends ActionSupport {
 	private OwnPhoneOrder modifyingOwnPhoneOrder;
 
 	/**
+	 * a form bean instance submitted by ownphoneordermanagement.jsp
+	 */
+	private OwnPhoneOrderQueryForm ownPhoneOrderQuery;
+
+	/**
 	 * OwnPhoneOrderDAOImpl instance
 	 */
 	private OwnPhoneOrderDAO ownPhoneOrderDAO = new OwnPhoneOrderDAOImpl();
@@ -80,6 +87,21 @@ public class OrderAction extends ActionSupport {
 	 */
 	public void setModifyingOwnPhoneOrder(OwnPhoneOrder modifyingOwnPhoneOrder) {
 		this.modifyingOwnPhoneOrder = modifyingOwnPhoneOrder;
+	}
+
+	/**
+	 * @return the ownPhoneOrderQuery
+	 */
+	public OwnPhoneOrderQueryForm getOwnPhoneOrderQuery() {
+		return ownPhoneOrderQuery;
+	}
+
+	/**
+	 * @param ownPhoneOrderQuery
+	 *            the ownPhoneOrderQuery to set
+	 */
+	public void setOwnPhoneOrderQuery(OwnPhoneOrderQueryForm ownPhoneOrderQuery) {
+		this.ownPhoneOrderQuery = ownPhoneOrderQuery;
 	}
 
 	/**
@@ -152,20 +174,73 @@ public class OrderAction extends ActionSupport {
 				ServletActionContext.getRequest().getParameter("page"))
 				.intValue();
 
-		requestPage = requestPage <= 0 ? 0 : requestPage;
+		requestPage = requestPage <= 1 ? 1 : requestPage;
 
 		int starts = ITEMS * (requestPage - 1);
 		int ends = ITEMS * requestPage - 1;
 
+		String ordernumberquery = null;
 		List<OwnPhoneOrder> ownPhoneOrderList = null;
 		Integer orderSize = null;
 		try {
-			orderSize = Integer.valueOf(ownPhoneOrderDAO
-					.sizeOfOwnPhoneOrdersByBelongto(commonUseraccount));
 
-			ownPhoneOrderList = ownPhoneOrderDAO
-					.findStartsToEndsOwnPhoneOrdersByBelongto(
-							commonUseraccount, starts, ends);
+			// Query ordernumber
+			ordernumberquery = ServletActionContext.getRequest().getParameter(
+					"ordernumberquery");
+
+			if (ordernumberquery != null && !ordernumberquery.trim().isEmpty()) {
+
+				if (FormValidator.validateStringUsingRegex(ordernumberquery,
+						"^\\d+$")) {
+
+					OwnPhoneOrder ownPhoneOrder = ownPhoneOrderDAO
+							.findOwnPhoneOrderByOrderNumber(Long
+									.valueOf(ordernumberquery));
+					if (ownPhoneOrder != null) {
+
+						orderSize = Integer.valueOf(1);
+
+						ownPhoneOrderList = new ArrayList<OwnPhoneOrder>();
+
+						ownPhoneOrderList.add(ownPhoneOrder);
+					} else {
+						orderSize = Integer.valueOf(0);
+					}
+				} else {
+					orderSize = Integer.valueOf(0);
+				}
+			} else {
+
+				if (ownPhoneOrderQuery == null) {
+
+					ownPhoneOrderQuery = new OwnPhoneOrderQueryForm();
+					ownPhoneOrderQuery.setOrdertype("modifiedtime");
+					ownPhoneOrderQuery.setOrderdirection("descending");
+				}
+
+				// Query orders size
+				orderSize = Integer.valueOf(ownPhoneOrderDAO
+						.sizeOfOwnPhoneOrdersWithConditions(commonUseraccount,
+								ownPhoneOrderQuery.getKeypad(),
+								ownPhoneOrderQuery.getPhonecolor(),
+								ownPhoneOrderQuery.getPhonestyle(),
+								ownPhoneOrderQuery.getEmergency(),
+								ownPhoneOrderQuery.getPrice(),
+								ownPhoneOrderQuery.getOrdertime()));
+
+				// Query order list
+				ownPhoneOrderList = ownPhoneOrderDAO
+						.findOwnPhoneOrdersWithConditions(commonUseraccount,
+								starts, ends,
+								ownPhoneOrderQuery.getOrdertype(),
+								ownPhoneOrderQuery.getOrderdirection(),
+								ownPhoneOrderQuery.getKeypad(),
+								ownPhoneOrderQuery.getPhonecolor(),
+								ownPhoneOrderQuery.getPhonestyle(),
+								ownPhoneOrderQuery.getEmergency(),
+								ownPhoneOrderQuery.getPrice(),
+								ownPhoneOrderQuery.getOrdertime());
+			}
 		} catch (HibernateOperateException e) {
 			this.addActionMessage("操作失败，请重试，或联系管理员。");
 			return "findownphoneorderserror";
@@ -177,6 +252,8 @@ public class OrderAction extends ActionSupport {
 		request.put("orderSize", orderSize);
 		request.put("pageSize", pageSize);
 		request.put("currentPage", Integer.valueOf(requestPage));
+		request.put("ordernumberquery", ordernumberquery);
+		request.put("ownPhoneOrderQuery", ownPhoneOrderQuery);
 		request.put("ownPhoneOrderListToShow", ownPhoneOrderList);
 
 		return "findcommonuserownphoneorderssuccess";
@@ -202,20 +279,72 @@ public class OrderAction extends ActionSupport {
 				ServletActionContext.getRequest().getParameter("page"))
 				.intValue();
 
-		requestPage = requestPage <= 0 ? 0 : requestPage;
+		requestPage = requestPage <= 1 ? 1 : requestPage;
 
 		int starts = ITEMS * (requestPage - 1);
 		int ends = ITEMS * requestPage - 1;
 
-		List<OwnPhoneOrder> ownPhoneOrderList;
+		String ordernumberquery = null;
+		List<OwnPhoneOrder> ownPhoneOrderList = null;
 		Integer orderSize = null;
 		try {
-			orderSize = Integer.valueOf(ownPhoneOrderDAO
-					.sizeOfOwnPhoneOrdersByBelongto(adminaccount));
 
-			ownPhoneOrderList = ownPhoneOrderDAO
-					.findStartsToEndsOwnPhoneOrdersByBelongto(adminaccount,
-							starts, ends);
+			// Query ordernumber
+			ordernumberquery = ServletActionContext.getRequest().getParameter(
+					"ordernumberquery");
+
+			if (ordernumberquery != null && !ordernumberquery.trim().isEmpty()) {
+
+				if (FormValidator.validateStringUsingRegex(ordernumberquery,
+						"^\\d+$")) {
+
+					OwnPhoneOrder ownPhoneOrder = ownPhoneOrderDAO
+							.findOwnPhoneOrderByOrderNumber(Long
+									.valueOf(ordernumberquery));
+					if (ownPhoneOrder != null) {
+
+						orderSize = Integer.valueOf(1);
+
+						ownPhoneOrderList = new ArrayList<OwnPhoneOrder>();
+
+						ownPhoneOrderList.add(ownPhoneOrder);
+					} else {
+						orderSize = Integer.valueOf(0);
+					}
+				} else {
+					orderSize = Integer.valueOf(0);
+				}
+			} else {
+
+				if (ownPhoneOrderQuery == null) {
+
+					ownPhoneOrderQuery = new OwnPhoneOrderQueryForm();
+					ownPhoneOrderQuery.setOrdertype("modifiedtime");
+					ownPhoneOrderQuery.setOrderdirection("descending");
+				}
+
+				// Query orders size
+				orderSize = Integer.valueOf(ownPhoneOrderDAO
+						.sizeOfOwnPhoneOrdersWithConditions(adminaccount,
+								ownPhoneOrderQuery.getKeypad(),
+								ownPhoneOrderQuery.getPhonecolor(),
+								ownPhoneOrderQuery.getPhonestyle(),
+								ownPhoneOrderQuery.getEmergency(),
+								ownPhoneOrderQuery.getPrice(),
+								ownPhoneOrderQuery.getOrdertime()));
+
+				// Query order list
+				ownPhoneOrderList = ownPhoneOrderDAO
+						.findOwnPhoneOrdersWithConditions(adminaccount, starts,
+								ends, ownPhoneOrderQuery.getOrdertype(),
+								ownPhoneOrderQuery.getOrderdirection(),
+								ownPhoneOrderQuery.getKeypad(),
+								ownPhoneOrderQuery.getPhonecolor(),
+								ownPhoneOrderQuery.getPhonestyle(),
+								ownPhoneOrderQuery.getEmergency(),
+								ownPhoneOrderQuery.getPrice(),
+								ownPhoneOrderQuery.getOrdertime());
+			}
 		} catch (HibernateOperateException e) {
 			this.addActionMessage("操作失败，请重试，或联系管理员。");
 			return "findownphoneorderserror";
@@ -227,6 +356,8 @@ public class OrderAction extends ActionSupport {
 		request.put("orderSize", orderSize);
 		request.put("pageSize", pageSize);
 		request.put("currentPage", Integer.valueOf(requestPage));
+		request.put("ordernumberquery", ordernumberquery);
+		request.put("ownPhoneOrderQuery", ownPhoneOrderQuery);
 		request.put("ownPhoneOrderListToShow", ownPhoneOrderList);
 
 		return "findadminownphoneorderssuccess";

@@ -3,6 +3,7 @@
  */
 package com.ownphone.content.dao.impl;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -96,7 +97,7 @@ public class OwnPhoneOrderDAOImpl implements OwnPhoneOrderDAO {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<OwnPhoneOrder> findStartsToEndsOwnPhoneOrdersByBelongto(
+	public List<OwnPhoneOrder> findOwnPhoneOrdersOrderByModifiedTime(
 			String belongToUseraccount, int starts, int ends)
 			throws HibernateOperateException {
 
@@ -120,6 +121,136 @@ public class OwnPhoneOrderDAOImpl implements OwnPhoneOrderDAO {
 
 			return (list == null || list.size() == 0) ? null : list;
 		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+
+			throw new HibernateOperateException(e.getMessage());
+		}
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.ownphone.content.dao.OwnPhoneOrderDAO#findOwnPhoneOrdersWithConditions
+	 * (java.lang.String, int, int, java.lang.String, java.lang.String,
+	 * java.lang.String, java.lang.String, java.lang.String, java.lang.String,
+	 * java.lang.String, java.lang.String)
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<OwnPhoneOrder> findOwnPhoneOrdersWithConditions(
+			String belongToUseraccount, int starts, int ends, String ordertype,
+			String orderdirection, String keypad, String phonecolor,
+			String phonestyle, String emergency, String price, String ordertime)
+			throws HibernateOperateException {
+
+		int items = ends - starts + 1;
+
+		StringBuilder hql = new StringBuilder(
+				"from OwnPhoneOrder o where o.belongtouseraccount=:belongtouseraccount");
+
+		if (keypad != null && !keypad.isEmpty()) {
+			hql.append(" and o.keypad=:keypad");
+		}
+
+		if (phonecolor != null && !phonecolor.isEmpty()) {
+			hql.append(" and o.phonecolor=:phonecolor");
+		}
+
+		if (phonestyle != null && !phonestyle.isEmpty()) {
+			hql.append(" and o.phonestyle=:phonestyle");
+		}
+
+		if (emergency != null && !emergency.isEmpty()) {
+			hql.append(" and o.emergency=:emergency");
+		}
+
+		if (price != null && !price.isEmpty()) {
+			hql.append(" and o.price=:price");
+		}
+
+		if (ordertime != null && !ordertime.isEmpty()) {
+			if (ordertime.equals("latestthreemonthes")) {
+				hql.append(" and o.ordertimemillis>=:starttime");
+			} else if (ordertime.equals("threemonthesago")) {
+				hql.append(" and o.ordertimemillis<:endtime");
+			}
+		}
+
+		if (ordertype == null || ordertype.isEmpty()) {
+			hql.append(" order by o.modifytimemillis");
+		} else if (ordertype.equals("modifiedtime")) {
+			hql.append(" order by o.modifytimemillis");
+		} else if (ordertype.equals("orderedtime")) {
+			hql.append(" order by o.ordertimemillis");
+		} else {
+			hql.append(" order by o.modifytimemillis");
+		}
+
+		if (orderdirection == null || orderdirection.isEmpty()) {
+			hql.append(" desc");
+		} else if (orderdirection.equals("descending")) {
+			hql.append(" desc");
+		} else if (orderdirection.equals("increasing")) {
+			;
+		} else {
+			;
+		}
+
+		List<OwnPhoneOrder> list = null;
+		try {
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session.beginTransaction();
+			Query query = session.createQuery(hql.toString());
+			query.setParameter("belongtouseraccount", belongToUseraccount);
+			query.setFirstResult(starts);
+			query.setMaxResults(items);
+
+			if (keypad != null && !keypad.isEmpty()) {
+				query.setParameter("keypad", keypad);
+			}
+
+			if (phonecolor != null && !phonecolor.isEmpty()) {
+				query.setParameter("phonecolor", phonecolor);
+			}
+
+			if (phonestyle != null && !phonestyle.isEmpty()) {
+				query.setParameter("phonestyle", phonestyle);
+			}
+
+			if (emergency != null && !emergency.isEmpty()) {
+				query.setParameter("emergency", emergency);
+			}
+
+			if (price != null && !price.isEmpty()) {
+				query.setParameter("price", price);
+			}
+
+			if (ordertime != null && !ordertime.isEmpty()) {
+
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTimeInMillis(System.currentTimeMillis());
+				calendar.add(Calendar.MONTH, -3);
+				Long time = Long.valueOf(calendar.getTimeInMillis());
+
+				if (ordertime.equals("latestthreemonthes")) {
+					query.setParameter("starttime", time);
+				} else if (ordertime.equals("threemonthesago")) {
+					query.setParameter("endtime", time);
+				}
+			}
+
+			list = query.list(); // Do not use forcing cast, it will use
+									// ArrayList<> so that order result is
+									// invalid.
+
+			session.getTransaction().commit();
+
+			return (list == null || list.size() == 0) ? null : list;
+		} catch (Exception e) {
+
 			e.printStackTrace();
 			session.getTransaction().rollback();
 
@@ -202,6 +333,108 @@ public class OwnPhoneOrderDAOImpl implements OwnPhoneOrderDAO {
 		List<OwnPhoneOrder> list = findOwnPhoneOrdersByBelongto(belongToUserAccount);
 
 		return list == null ? 0 : list.size();
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.ownphone.content.dao.OwnPhoneOrderDAO#sizeOfOwnPhoneOrdersWithConditions
+	 * (java.lang.String, java.lang.String, java.lang.String, java.lang.String,
+	 * java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public int sizeOfOwnPhoneOrdersWithConditions(String belongToUseraccount,
+			String keypad, String phonecolor, String phonestyle,
+			String emergency, String price, String ordertime)
+			throws HibernateOperateException {
+
+		StringBuilder hql = new StringBuilder(
+				"from OwnPhoneOrder o where o.belongtouseraccount=:belongtouseraccount");
+
+		if (keypad != null && !keypad.isEmpty()) {
+			hql.append(" and o.keypad=:keypad");
+		}
+
+		if (phonecolor != null && !phonecolor.isEmpty()) {
+			hql.append(" and o.phonecolor=:phonecolor");
+		}
+
+		if (phonestyle != null && !phonestyle.isEmpty()) {
+			hql.append(" and o.phonestyle=:phonestyle");
+		}
+
+		if (emergency != null && !emergency.isEmpty()) {
+			hql.append(" and o.emergency=:emergency");
+		}
+
+		if (price != null && !price.isEmpty()) {
+			hql.append(" and o.price=:price");
+		}
+
+		if (ordertime != null && !ordertime.isEmpty()) {
+			if (ordertime.equals("latestthreemonthes")) {
+				hql.append(" and o.ordertimemillis>=:starttime");
+			} else if (ordertime.equals("threemonthesago")) {
+				hql.append(" and o.ordertimemillis<:endtime");
+			}
+		}
+
+		List<OwnPhoneOrder> list = null;
+		try {
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session.beginTransaction();
+			Query query = session.createQuery(hql.toString());
+			query.setParameter("belongtouseraccount", belongToUseraccount);
+
+			if (keypad != null && !keypad.isEmpty()) {
+				query.setParameter("keypad", keypad);
+			}
+
+			if (phonecolor != null && !phonecolor.isEmpty()) {
+				query.setParameter("phonecolor", phonecolor);
+			}
+
+			if (phonestyle != null && !phonestyle.isEmpty()) {
+				query.setParameter("phonestyle", phonestyle);
+			}
+
+			if (emergency != null && !emergency.isEmpty()) {
+				query.setParameter("emergency", emergency);
+			}
+
+			if (price != null && !price.isEmpty()) {
+				query.setParameter("price", price);
+			}
+
+			if (ordertime != null && !ordertime.isEmpty()) {
+
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTimeInMillis(System.currentTimeMillis());
+				calendar.add(Calendar.MONTH, -3);
+				Long time = Long.valueOf(calendar.getTimeInMillis());
+
+				if (ordertime.equals("latestthreemonthes")) {
+					query.setParameter("starttime", time);
+				} else if (ordertime.equals("threemonthesago")) {
+					query.setParameter("endtime", time);
+				}
+			}
+
+			list = (List<OwnPhoneOrder>) query.list();
+
+			session.getTransaction().commit();
+
+			return list == null ? 0 : list.size();
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			session.getTransaction().rollback();
+
+			throw new HibernateOperateException(e.getMessage());
+		}
 
 	}
 

@@ -297,4 +297,39 @@ public class FormValidator {
 		}
 	}
 
+	/**
+	 * Validates a String using regular expression.
+	 * 
+	 * @param validatingString
+	 *            String will be validated
+	 * @param regularExpression
+	 *            regular expression
+	 * 
+	 * @return true if the String matches the regularExpression, if not, false.
+	 */
+	public static boolean validateStringUsingRegex(String validatingString,
+			String regularExpression) {
+
+		if (validatingString == null || validatingString.trim().isEmpty()) {
+
+			return false;
+		} else {
+			// Removes the blanks at the beginning and the end.
+			String checkingString = validatingString.trim();
+
+			// Validates the characters.
+			Pattern checkPattern = Pattern.compile(regularExpression);
+			Matcher checkMatcher = checkPattern.matcher(checkingString);
+
+			if (checkMatcher.matches()) {
+
+				return true;
+
+			} else {
+
+				return false;
+			}
+		}
+	}
+
 }
