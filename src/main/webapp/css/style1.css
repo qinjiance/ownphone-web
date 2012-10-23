@@ -453,6 +453,7 @@ table.ownphoneorderquerytable tr>td{
 	border-collapse: separate;
 	border: 5px solid rgb(175, 226, 105);
 	font-size: 11px;
+	text-align: center;
 	color: #000000;
 	font-family: "微软雅黑";
 }

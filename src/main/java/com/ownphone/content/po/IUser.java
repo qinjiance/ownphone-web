@@ -23,4 +23,11 @@ public interface IUser {
 	 */
 	public String fetchUseraccount();
 
+	/**
+	 * Fetch the user's registertimemillis.
+	 * 
+	 * @return a long value represents user's registertimemillis
+	 */
+	public long fetchRegisterTimeMillis();
+
 }

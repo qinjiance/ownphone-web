@@ -202,4 +202,14 @@ public class CommonUser implements IUser, Serializable {
 		return this.getUseraccount();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.ownphone.content.po.IUser#fetchRegisterTimeMillis()
+	 */
+	@Override
+	public long fetchRegisterTimeMillis() {
+		return this.getRegistertimemillis().longValue();
+	}
+
 }

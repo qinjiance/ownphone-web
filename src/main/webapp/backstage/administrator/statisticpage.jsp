@@ -44,13 +44,13 @@
 							<table class="serverstatistictable">
 								<thead>
 									<tr>
-										<th colspan="5"><strong>服务器启动时间：</strong> <fmt:formatDate
+										<th colspan="6"><strong>服务器启动时间：</strong> <fmt:formatDate
 												value="<%=ApplicationConstants.SERVER_START_DATE%>"
 												pattern="yyyy-MM-dd HH:mm:ss" /></th>
 										<th colspan="5"><strong>历史访客数：</strong> <%=ApplicationConstants.TOTAL_HISTORY_COUNT%>人</th>
 									</tr>
 									<tr>
-										<th colspan="5"><strong>最高在线访客数：</strong> <%=ApplicationConstants.MAX_ONLINE_COUNT%>人
+										<th colspan="6"><strong>最高在线访客数：</strong> <%=ApplicationConstants.MAX_ONLINE_COUNT%>人
 										</th>
 										<th colspan="5"><strong>发生在：</strong> <fmt:formatDate
 												value="<%=ApplicationConstants.MAX_ONLINE_COUNT_DATE%>"
@@ -58,15 +58,26 @@
 									</tr>
 									<tr>
 										<td>序号</td>
-										<td>在线用户<br />SessionID</td>
-										<td>Session<br />建立时间</td>
-										<td>登录<br />用户名</td>
-										<td>登录用<br />户权限</td>
-										<td>用户登<br />录时间</td>
-										<td>远程<br />主机名</td>
-										<td>远程<br />IP地址</td>
-										<td>在线操<br />作次数</td>
-										<td>最后操<br />作时间</td>
+										<td>在线用户<br />SessionID
+										</td>
+										<td>Session<br />建立时间
+										</td>
+										<td>登录<br />用户名
+										</td>
+										<td>登录用<br />户权限
+										</td>
+										<td>用户注<br />册日期
+										</td>
+										<td>用户登<br />录时间
+										</td>
+										<td>远程<br />主机名
+										</td>
+										<td>远程<br />IP地址
+										</td>
+										<td>在线<br />操作
+										</td>
+										<td>最后操<br />作时间
+										</td>
 									</tr>
 								</thead>
 								<tbody>
@@ -76,11 +87,19 @@
 										var="sess" varStatus="st">
 										<tr>
 											<td>${st.count}</td>
-											<td>${sess.id}</td>
 											<%
 												HttpSession iteratingSession = (HttpSession) pageContext
 																	.getAttribute("sess");
-															long creationtime = iteratingSession.getCreationTime();
+															String sessionId = iteratingSession.getId();
+															int sessionIdLength = sessionId.length();
+															String sessionIdPart1 = sessionId.substring(0,
+																	sessionIdLength / 2);
+															String sessionIdPart2 = sessionId
+																	.substring(sessionIdLength / 2);
+											%>
+											<td><%=sessionIdPart1%><br /><%=sessionIdPart2%></td>
+											<%
+												long creationtime = iteratingSession.getCreationTime();
 											%>
 											<td><fmt:formatDate value="<%=new Date(creationtime)%>"
 													pattern="yyyy-MM-dd HH:mm:ss" /></td>
@@ -89,10 +108,13 @@
 																	.getAttribute("loginAccount");
 															String userAccount = null;
 															String privilege = null;
+															long registerTimeMillis = 0;
 															LoginInfo loginInfo = null;
 															if (loginUser != null) {
 																userAccount = loginUser.fetchUseraccount();
 																privilege = loginUser.fetchPrivilege();
+																registerTimeMillis = loginUser
+																		.fetchRegisterTimeMillis();
 																loginInfo = (LoginInfo) iteratingSession
 																		.getAttribute("loginInfo");
 															}
@@ -101,20 +123,34 @@
 											<td><%=loginUser == null ? "未登录" : privilege
 								.equals("common") ? "普通用户" : privilege
 								.equals("admin") ? "管理员" : "权限为空"%></td>
+								<td>
+											<%
+												if (loginUser == null) {
+											%>
+											未登录
+											<%
+												} else {
+											%>
+											<fmt:formatDate
+													value="<%=new Date(registerTimeMillis)%>"
+													pattern="yyyy-MM-dd HH:mm:ss" />
+											<%
+												}
+											%>
+											</td>
 											<td>
 												<%
 													if (loginUser == null) {
 												%> 未登录 <%
 													} else {
 												%> <fmt:formatDate value="<%=loginInfo.getLogindatatime()%>"
-													pattern="yyyy-MM-dd HH:mm:ss" />
-												<%
- 													}
- 												%>
+													pattern="yyyy-MM-dd HH:mm:ss" /> <%
+ 	}
+ %>
 											</td>
 											<td><%=iteratingSession.getAttribute("remoteHost")%></td>
 											<td><%=iteratingSession.getAttribute("remoteIP")%></td>
-											<td><%=iteratingSession.getAttribute("activeTimes")%></td>
+											<td><%=iteratingSession.getAttribute("activeTimes")%>次</td>
 											<%
 												long lastaccessedtime = iteratingSession
 																	.getLastAccessedTime();

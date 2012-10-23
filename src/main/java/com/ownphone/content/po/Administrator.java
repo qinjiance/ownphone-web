@@ -202,4 +202,14 @@ public class Administrator implements IUser, Serializable {
 		return this.getAdminaccount();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.ownphone.content.po.IUser#fetchRegisterTimeMillis()
+	 */
+	@Override
+	public long fetchRegisterTimeMillis() {
+		return this.getRegistertimemillis().longValue();
+	}
+
 }
