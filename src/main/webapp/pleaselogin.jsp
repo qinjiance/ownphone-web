@@ -29,9 +29,9 @@
 				</jsp:include>
 
 				<div id="mainlayout">
-					<div style="height: 250px;"></div>
+					<div style="height: 100px;"></div>
 					<div class="loginprompt">用户未登录，请先登录</div>
-					<div style="height: 250px;"></div>
+					<div style="height: 100px;"></div>
 
 				</div>
 

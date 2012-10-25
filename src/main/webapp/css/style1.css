@@ -1,5 +1,9 @@
 /* CSS Document */
 
+.clear {
+	clear: both;
+}
+
 /* page*/
 .pagebg {
 	background-color: #ffffff;
@@ -242,6 +246,53 @@ img {
 }
 
 /* modifyinfo page*/
+.modifyinfolist {
+	margin: 20px 50px;
+	float: left;
+	font-weight: bold;
+	color: #0000aa;
+	font-family: 微软雅黑;
+	font-size: 18px;
+	background: rgb(167, 232, 252);
+	list-style-type: none;
+	padding: 20px;
+	height: 440px;
+	outline: rgb(167, 232, 252) double 7px;
+}
+
+.modifyinfolist li{
+	border-bottom: 2px dotted #ffffff;
+	padding: 5px;
+}
+
+.modifyinfolist a {
+	color: #0000aa;
+	text-decoration: none;
+}
+
+.modifyinfolist a:link {
+	color: #0000aa;
+	text-decoration: none;
+}
+
+.modifyinfolist a:visited {
+	color: #0000aa;
+	text-decoration: none;
+}
+
+.modifyinfolist a:hover {
+	background-color: #319ff3;
+	color: #ffffff;
+	text-decoration: none;
+	font-style: italic;
+}
+
+#modifyinfoiframe {
+	margin: 10px 20px;
+	width: 65%;
+	float: left;
+}
+
 .modifyaccountinfotable {
 	margin: 50px;
 	border: 2px solid rgb(167, 232, 252);
@@ -252,7 +303,7 @@ img {
 }
 
 table.modifyaccountinfotable thead>tr>th {
-	padding: 5px;
+	padding: 10px;
 	background: rgb(167, 232, 252);
 	font-weight: bold;
 	color: #ff00ff;
@@ -274,7 +325,7 @@ table.modifyaccountinfotable tbody>tr>td {
 }
 
 table.modifyaccountpasswordtable thead>tr>th {
-	padding: 5px;
+	padding: 10px;
 	background: rgb(167, 232, 252);
 	font-weight: bold;
 	color: #ff00ff;
@@ -322,7 +373,7 @@ table.registertable tbody>tr>td {
 }
 
 .inputprompt {
-	color: #ff0000;
+	color: #880000;
 	text-align: left;
 	font-size: 13px;
 	font-weight: bold;
@@ -348,7 +399,10 @@ table.registertable tbody>tr>td {
 }
 
 table.ownphoneorderlisttable tr>td {
-	border: 1px dotted rgb(253, 215, 164);
+	border-top: 1px dotted rgb(253, 215, 164);
+	border-bottom: 1px dotted rgb(253, 215, 164);
+	border-left: 0;
+	border-right: 0;
 	padding: 5px;
 	text-align: center;
 }
@@ -359,14 +413,20 @@ table.ownphoneorderlisttable thead>tr>th {
 	color: rgb(18, 60, 135);
 	font-family: 宋体;
 	font-size: 25px;
+	padding: 10px;
 }
 
 table.ownphoneorderlisttable thead>tr>td {
+	border: 1px dotted rgb(253, 215, 164);
 	white-space: nowrap;
 	font-weight: bold;
 	color: rgb(18, 60, 135);
 	font-family: 微软雅黑;
 	font-size: 20px;
+}
+
+table.ownphoneorderlisttable tbody>tr:hover{
+	background-color: rgb(175, 226, 105);
 }
 
 table.ownphoneorderlisttable tfoot>tr>td {
@@ -387,6 +447,8 @@ table.ownphoneorderlisttable tfoot>tr>td a:visited{
 
 table.ownphoneorderlisttable tfoot>tr>td a:hover{
 	color: rgb(45, 112, 213);
+	background: rgb(89, 142, 222);
+	color: #ffffff;
 	text-decoration: none;
 }
 

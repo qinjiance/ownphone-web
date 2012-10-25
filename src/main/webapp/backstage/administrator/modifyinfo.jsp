@@ -18,6 +18,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
 <link type="text/css" rel="stylesheet" href="<%=path%>/css/style1.css" />
 <title><%=location%></title>
+
+<script type="text/javascript">
+	function SetIframeHeight(obj) {
+		var win = obj;
+		if (document.getElementById) {
+			if (win && !window.opera) {
+				if (win.contentDocument
+						&& win.contentDocument.body.offsetHeight) {
+					win.height = win.contentDocument.body.offsetHeight;
+				} else if (win.Document && win.Document.body.scrollHeight) {
+					win.height = win.Document.body.scrollHeight;
+				}
+			}
+		}
+	}
+</script>
+
 </head>
 
 <body>
@@ -38,21 +55,23 @@
 						</c:when>
 
 						<c:when test="${sessionScope.loginAccount.privilege == 'admin'}">
-							<div style="height: 250px;"></div>
+							<div>
+								<ul class="modifyinfolist">
+									<li><a
+										href="<%=path%>/backstage/administrator/modifyaccountinfo.jsp"
+										target="modifyinfo_iframe">修改用户信息</a></li>
+									<li><a
+										href="<%=path%>/backstage/administrator/modifyaccountpassword.jsp"
+										target="modifyinfo_iframe">修改用户密码</a></li>
+								</ul>
+							</div>
 
-							<table>
-								<tr>
-									<td class="navigloginfuction"><a
-										href="<%=path%>/backstage/administrator/modifyaccountinfo.jsp">修改用户信息</a>
-									</td>
-								</tr>
-								<tr>
-									<td class="navigloginfuction"><a
-										href="<%=path%>/backstage/administrator/modifyaccountpassword.jsp">修改用户密码</a>
-									</td>
-								</tr>
-							</table>
-							<div style="height: 250px;"></div>
+							<div>
+								<iframe id="modifyinfoiframe" name="modifyinfo_iframe"
+									scrolling="no" frameborder="0"
+									src="<%=path%>/backstage/administrator/modifyaccountinfo.jsp"
+									onload="Javascrip:SetIframeHeight(this)"></iframe>
+							</div>
 						</c:when>
 
 						<c:otherwise>
@@ -61,6 +80,8 @@
 							%>
 						</c:otherwise>
 					</c:choose>
+
+					<div class="clear"></div>
 
 				</div>
 

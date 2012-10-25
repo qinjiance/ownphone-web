@@ -29,11 +29,11 @@
 				</jsp:include>
 
 				<div id="mainlayout">
-					<div style="height: 250px;"></div>
+					<div style="height: 100px;"></div>
 					
-					<s:actionmessage cssClass="message"/>
+					<s:actionmessage cssClass="message" />
 					
-					<div style="height: 250px;"></div>
+					<div style="height: 100px;"></div>
 				</div>
 
 				<jsp:include page="/tailer.jsp" />
