@@ -209,9 +209,11 @@ body {
 }
 
 .loginprompt {
+	margin: 20px;
+	font-size: 40px;
 	color: #ff0000;
+	font-family: "微软雅黑";
 	text-align: center;
-	font-weight: bold;
 }
 
 /* image */

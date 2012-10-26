@@ -27,9 +27,9 @@
 		<div id="mainlayout">
 			<c:choose>
 				<c:when test="${sessionScope.loginAccount == null}">
-					<%
-						response.sendRedirect(path + "/pleaselogin_iframe.jsp");
-					%>
+					<script language="javascript" type="text/javascript">
+						window.top.location.href = "<%=path%>/pleaselogin.jsp";
+					</script>
 				</c:when>
 
 				<c:when test="${sessionScope.loginAccount.privilege == 'common'}">
@@ -72,9 +72,9 @@
 				</c:when>
 
 				<c:otherwise>
-					<%
-						response.sendRedirect(path + "/pleaselogin_iframe.jsp");
-					%>
+					<script language="javascript" type="text/javascript">
+						window.top.location.href = "<%=path%>/pleaselogin.jsp";
+					</script>
 				</c:otherwise>
 			</c:choose>
 

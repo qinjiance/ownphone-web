@@ -39,7 +39,8 @@
 							%>
 						</c:when>
 
-						<c:when test="${sessionScope.loginAccount.privilege == 'admin'}">
+						<c:when test="${sessionScope.loginAccount.privilege == 'common' 
+										|| sessionScope.loginAccount.privilege == 'admin'}">
 							<s:form name="modifyOwnPhoneOrder"
 								action="order!modifyOwnPhoneOrder" method="post">
 								<table class="designtable">

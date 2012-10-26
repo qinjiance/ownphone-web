@@ -143,9 +143,9 @@ public class OrderAction extends ActionSupport {
 					.fetchPrivilege();
 
 			if (privilege.equals("common")) {
-				return "findcommonuserownphoneordersuccess";
+				return "findownphoneordersuccess";
 			} else if (privilege.equals("admin")) {
-				return "findadminownphoneordersuccess";
+				return "findownphoneordersuccess";
 			} else {
 				this.addActionMessage("用户权限错误，请重试，或联系管理员。");
 				return "privilegeerror";
@@ -439,9 +439,9 @@ public class OrderAction extends ActionSupport {
 					.fetchPrivilege();
 
 			if (privilege.equals("common")) {
-				return "validatecommonusermodifyingorderfailed";
+				return "validatemodifyingorderfailed";
 			} else if (privilege.equals("admin")) {
-				return "validateadminmodifyingorderfailed";
+				return "validatemodifyingorderfailed";
 			} else {
 				this.addActionMessage("用户权限错误，请重试，或联系管理员。");
 				return "privilegeerror";

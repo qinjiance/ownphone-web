@@ -29,16 +29,11 @@
 			<!-- showOwnPhoneOrderByOrderNumber -->
 			<result name="requesterror">/showresultmessage.jsp</result>
 			<result name="findownphoneordererror">/showresultmessage.jsp</result>
-			<result name="findownphoneordererror">/showresultmessage.jsp</result>
-			<result name="findcommonuserownphoneordersuccess">/backstage/commonuser/modifyownphoneorder.jsp
-			</result>
-			<result name="findadminownphoneordersuccess">/backstage/administrator/modifyownphoneorder.jsp
+			<result name="findownphoneordersuccess">/backstage/modifyownphoneorder.jsp
 			</result>
 
 			<!-- modifyOwnPhoneOrder -->
-			<result name="validatecommonusermodifyingorderfailed">/backstage/commonuser/modifyownphoneorder.jsp
-			</result>
-			<result name="validateadminmodifyingorderfailed">/backstage/administrator/modifyownphoneorder.jsp
+			<result name="validatemodifyingorderfailed">/backstage/modifyownphoneorder.jsp
 			</result>
 			<result name="ownphoneordernotexisted">/showresultmessage.jsp</result>
 			<result name="modifyfeedback">/showresultmessage.jsp</result>

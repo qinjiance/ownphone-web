@@ -18,9 +18,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
 <link type="text/css" rel="stylesheet" href="<%=path%>/css/style1.css" />
 <title><%=location%></title>
+
+<script language="javascript" type="text/javascript">
+function adjustHeight(){
+	var paddingDiv = document.getElementById('paddingDiv');
+	paddingDiv.style.height = document.documentElement.clientHeight - 300 - 100 - 140 + "px";
+}
+</script>
+
 </head>
 
-<body>
+<body onload="adjustHeight()">
 	<center>
 		<div class="pagebg">
 			<div class="bodybg">
@@ -29,11 +37,9 @@
 				</jsp:include>
 
 				<div id="mainlayout">
-					<div style="height: 100px;"></div>
-					
 					<s:actionmessage cssClass="message" />
 					
-					<div style="height: 100px;"></div>
+					<div id="paddingDiv" style="height: 100px;"></div>
 				</div>
 
 				<jsp:include page="/tailer.jsp" />
