@@ -3,6 +3,7 @@
  */
 package com.ownphone.content.action;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -392,7 +393,7 @@ public class OrderAction extends ActionSupport {
 			returnOwnPhone = ownPhoneOrderDAO.addOwnPhoneOrder(ownPhoneOrder);
 		} catch (HibernateOperateException e) {
 			this.addActionMessage("操作失败，请重试，或联系管理员。");
-			return "feedback";
+			return "addfeedback";
 		}
 
 		if (returnOwnPhone != null) {
@@ -431,6 +432,63 @@ public class OrderAction extends ActionSupport {
 			return "ownphoneordernotexisted";
 		}
 
+		foundOwnPhoneOrder.setKeypad(modifyingOwnPhoneOrder.getKeypad());
+		foundOwnPhoneOrder
+				.setPhonecolor(modifyingOwnPhoneOrder.getPhonecolor());
+		foundOwnPhoneOrder
+				.setPhonestyle(modifyingOwnPhoneOrder.getPhonestyle());
+		foundOwnPhoneOrder.setName(modifyingOwnPhoneOrder.getName());
+		foundOwnPhoneOrder.setEmergency(modifyingOwnPhoneOrder.getEmergency());
+		foundOwnPhoneOrder.setPrice(modifyingOwnPhoneOrder.getPrice());
+
+		foundOwnPhoneOrder.setKeyname1(modifyingOwnPhoneOrder.getKeyname1());
+		foundOwnPhoneOrder
+				.setKeynumber1(modifyingOwnPhoneOrder.getKeynumber1());
+
+		foundOwnPhoneOrder.setKeyname2(modifyingOwnPhoneOrder.getKeyname2());
+		foundOwnPhoneOrder
+				.setKeynumber2(modifyingOwnPhoneOrder.getKeynumber2());
+
+		foundOwnPhoneOrder.setKeyname3(modifyingOwnPhoneOrder.getKeyname3());
+		foundOwnPhoneOrder
+				.setKeynumber3(modifyingOwnPhoneOrder.getKeynumber3());
+
+		foundOwnPhoneOrder.setKeyname4(modifyingOwnPhoneOrder.getKeyname4());
+		foundOwnPhoneOrder
+				.setKeynumber4(modifyingOwnPhoneOrder.getKeynumber4());
+
+		foundOwnPhoneOrder.setKeyname5(modifyingOwnPhoneOrder.getKeyname5());
+		foundOwnPhoneOrder
+				.setKeynumber5(modifyingOwnPhoneOrder.getKeynumber5());
+
+		foundOwnPhoneOrder.setKeyname6(modifyingOwnPhoneOrder.getKeyname6());
+		foundOwnPhoneOrder
+				.setKeynumber6(modifyingOwnPhoneOrder.getKeynumber6());
+
+		foundOwnPhoneOrder.setKeyname7(modifyingOwnPhoneOrder.getKeyname7());
+		foundOwnPhoneOrder
+				.setKeynumber7(modifyingOwnPhoneOrder.getKeynumber7());
+
+		foundOwnPhoneOrder.setKeyname8(modifyingOwnPhoneOrder.getKeyname8());
+		foundOwnPhoneOrder
+				.setKeynumber8(modifyingOwnPhoneOrder.getKeynumber8());
+
+		foundOwnPhoneOrder.setKeyname9(modifyingOwnPhoneOrder.getKeyname9());
+		foundOwnPhoneOrder
+				.setKeynumber9(modifyingOwnPhoneOrder.getKeynumber9());
+
+		foundOwnPhoneOrder.setKeyname10(modifyingOwnPhoneOrder.getKeyname10());
+		foundOwnPhoneOrder.setKeynumber10(modifyingOwnPhoneOrder
+				.getKeynumber10());
+
+		foundOwnPhoneOrder.setKeyname11(modifyingOwnPhoneOrder.getKeyname11());
+		foundOwnPhoneOrder.setKeynumber11(modifyingOwnPhoneOrder
+				.getKeynumber11());
+
+		foundOwnPhoneOrder.setKeyname12(modifyingOwnPhoneOrder.getKeyname12());
+		foundOwnPhoneOrder.setKeynumber12(modifyingOwnPhoneOrder
+				.getKeynumber12());
+
 		request.put("ownPhoneOrderToShow", foundOwnPhoneOrder);
 
 		if (!validateOwnPhoneOrder(modifyingOwnPhoneOrder,
@@ -447,19 +505,6 @@ public class OrderAction extends ActionSupport {
 				return "privilegeerror";
 			}
 		}
-
-		foundOwnPhoneOrder.setKeypad(modifyingOwnPhoneOrder.getKeypad());
-		foundOwnPhoneOrder
-				.setPhonecolor(modifyingOwnPhoneOrder.getPhonecolor());
-		foundOwnPhoneOrder
-				.setPhonestyle(modifyingOwnPhoneOrder.getPhonestyle());
-		foundOwnPhoneOrder.setName(modifyingOwnPhoneOrder.getName());
-		foundOwnPhoneOrder.setEmergency(modifyingOwnPhoneOrder.getEmergency());
-		foundOwnPhoneOrder.setPrice(modifyingOwnPhoneOrder.getPrice());
-		foundOwnPhoneOrder.setDebithost(modifyingOwnPhoneOrder.getDebithost());
-		foundOwnPhoneOrder.setBank(modifyingOwnPhoneOrder.getBank());
-		foundOwnPhoneOrder.setBranch(modifyingOwnPhoneOrder.getBranch());
-		foundOwnPhoneOrder.setAccount(modifyingOwnPhoneOrder.getAccount());
 
 		Long systemCurrentTimeMillis = Long.valueOf(System.currentTimeMillis());
 		foundOwnPhoneOrder.setModifytimemillis(systemCurrentTimeMillis);
@@ -487,44 +532,6 @@ public class OrderAction extends ActionSupport {
 
 		boolean checkPassed = true;
 
-		// Validates the name field.
-		if (!FormValidator.validateFieldUsingRegex(this, formBeanName,
-				ownPhoneOrderForm, "name", FormValidator.CHECK_REALNAME_REGEX,
-				false, "姓名不可为空！", "中文姓名只能由中文组成，英文名只能由英文和它们中间的空格组成！")) {
-			checkPassed = false;
-		}
-
-		// Validates the debithost field
-		if (!FormValidator.validateFieldUsingRegex(this, formBeanName,
-				ownPhoneOrderForm, "debithost",
-				FormValidator.CHECK_REALNAME_REGEX, false, "卡主姓名不可为空！",
-				"中文姓名只能由中文组成，英文名只能由英文和它们中间的空格组成！")) {
-			checkPassed = false;
-		}
-
-		// Validates the bank field
-		if (!FormValidator.validateFieldUsingRegex(this, formBeanName,
-				ownPhoneOrderForm, "bank", FormValidator.CHECK_BANKNAME_REGEX,
-				false, "银行不可为空！", "银行只能由中文、英文、数字和它们中间的空格组成！")) {
-			checkPassed = false;
-		}
-
-		// Validates the branch field
-		if (!FormValidator.validateFieldUsingRegex(this, formBeanName,
-				ownPhoneOrderForm, "branch",
-				FormValidator.CHECK_BANKNAME_REGEX, false, "分行不可为空！",
-				"分行只能由中文、英文、数字和它们中间的空格组成！")) {
-			checkPassed = false;
-		}
-
-		// Validates the branch field
-		if (!FormValidator.validateFieldUsingRegex(this, formBeanName,
-				ownPhoneOrderForm, "account",
-				FormValidator.CHECK_BANKACCOUNT_REGEX, false, "银行账号不可为空！",
-				"银行账号只能由数字和它们中间的空格组成！")) {
-			checkPassed = false;
-		}
-
 		// Validates the keypad field
 		if (!FormValidator.validateRadio(this, formBeanName, ownPhoneOrderForm,
 				"keypad", false, "请选择按键数量！")) {
@@ -543,6 +550,13 @@ public class OrderAction extends ActionSupport {
 			checkPassed = false;
 		}
 
+		// Validates the name field.
+		if (!FormValidator.validateFieldUsingRegex(this, formBeanName,
+				ownPhoneOrderForm, "name", FormValidator.CHECK_PHONENAME_REGEX,
+				true, null, "手机名字只能由1到10个字，包括中文、英文、数字、下划线和它们中间的空格组成！")) {
+			checkPassed = false;
+		}
+
 		// Validates the emergency field
 		if (!FormValidator.validateRadio(this, formBeanName, ownPhoneOrderForm,
 				"emergency", false, "请选择是否需要紧急呼叫！")) {
@@ -550,9 +564,75 @@ public class OrderAction extends ActionSupport {
 		}
 
 		// Validates the price field
-		if (!FormValidator.validateRadio(this, formBeanName, ownPhoneOrderForm,
-				"price", false, "请选择资费套餐！")) {
+		if (!FormValidator.validateFieldUsingRegex(this, formBeanName,
+				ownPhoneOrderForm, "price", FormValidator.CHECK_DIGIT_REGEX,
+				false, "价格不可为空！", "价格只能由数字组成！")) {
 			checkPassed = false;
+		}
+
+		// Validates the keyname and keynumber fields
+		int keypad = Integer.valueOf(ownPhoneOrderForm.getKeypad()).intValue();
+
+		for (int k = 1; k <= 12; k++) {
+
+			String keyName = "keyname" + k;
+			String keyNumber = "keynumber" + k;
+
+			// Input fields
+			if (k <= keypad) {
+
+				// Validates the keyname field
+				if (!FormValidator.validateFieldUsingRegex(this, formBeanName,
+						ownPhoneOrderForm, keyName,
+						FormValidator.CHECK_PHONENAME_REGEX, false, "名字不可为空！",
+						"名字只能由1到10个字，包括中文、英文、数字、下划线和它们中间的空格组成！")) {
+					checkPassed = false;
+				}
+
+				// Validates the keynumber field
+				if (!FormValidator.validateFieldUsingRegex(this, formBeanName,
+						ownPhoneOrderForm, keyNumber,
+						FormValidator.CHECK_DIGIT_REGEX, false, "电话号码不可为空！",
+						"电话号码只能由数字组成！")) {
+					checkPassed = false;
+				}
+
+			} else { // Not valid fields
+				// Get class
+				Class<? extends Object> formClass = ownPhoneOrderForm
+						.getClass();
+
+				// Get private field reflect object
+				Field keynameField;
+				Field keynumberField;
+
+				try {
+					keynameField = formClass.getDeclaredField(keyName);
+					keynumberField = formClass.getDeclaredField(keyNumber);
+				} catch (NoSuchFieldException e) {
+					e.printStackTrace();
+					return false;
+				} catch (SecurityException e) {
+					e.printStackTrace();
+					return false;
+				}
+
+				// Open access
+				keynameField.setAccessible(true);
+				keynumberField.setAccessible(true);
+
+				// Set to null
+				try {
+					keynameField.set(ownPhoneOrderForm, null);
+					keynumberField.set(ownPhoneOrderForm, null);
+				} catch (IllegalArgumentException e) {
+					e.printStackTrace();
+					return false;
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+					return false;
+				}
+			}
 		}
 
 		return checkPassed;

@@ -231,6 +231,227 @@ img {
 }
 
 /* design your own phone page's table */
+#designownphonelist {
+	width: 550px;
+	float: left;
+	margin: 50px;
+}
+
+#designownphonelist ul{
+	padding: 10px;
+	list-style-type: none;
+}
+
+#keypad {
+	margin: 20px;
+	display: block;
+}
+
+.keypadimg {
+	cursor: pointer;
+}
+
+#phonecolor {
+	margin: 20px;
+	display: none;
+}
+
+#phonecolorlist {
+	margin: 20px;
+}
+
+#phonecolorlist li{
+	width: 50px;
+	height: 70px;
+	margin: 20px 10px;
+	float: left;
+	cursor: pointer;
+}
+
+#phonecolorpink {
+	background-color: rgb(236,0,140);
+}
+
+#phonecolorblue {
+	background-color: rgb(32,114,181);
+}
+
+#phonecolorgreen {
+	background-color: rgb(5,169,81);
+}
+
+#phonecolororange {
+	background-color: rgb(244,116,33);
+}
+
+#phonecolorred {
+	background-color: rgb(226,39,28);
+}
+
+#phonecolorblack {
+	background-color: rgb(54,49,48);
+}
+
+#phonestyle {
+	display: none;
+}
+
+.phonestyleimg {
+	margin: 20px 30px;
+	cursor: pointer;
+}
+
+.openlist1 {
+	cursor: pointer;
+	margin: 2px;
+	padding: 10px;
+	color: #ffffff;
+	background-color: rgb(0,133,63);
+	border-radius: 15px 15px 5px 5px;
+}
+
+.openlist2 {
+	cursor: pointer;
+	margin: 2px;
+	padding: 10px;
+	color: #ffffff;
+	background-color: rgb(0,133,63);
+	border-radius: 5px;
+}
+
+.openlist3 {
+	cursor: pointer;
+	margin: 2px;
+	padding: 10px;
+	color: #ffffff;
+	background-color: rgb(0,133,63);
+	border-radius: 5px 5px 15px 15px;
+}
+
+#orderButton {
+	cursor: pointer;
+	margin: 2px;
+	padding: 10px;
+	color: #ffffff;
+	background-color: rgb(0,133,63);
+	width: 200px;
+	float: right;
+	display: none;
+}
+
+#orderButton h3{
+	margin: 0;
+	font-family: 微软雅黑;
+	text-align: center;
+}
+
+#designownphonelist h1{
+	font-family: 华文琥珀;
+	text-align: left;
+	font-size: 30px;
+}
+
+#designownphonelist h2{
+	margin: 0;
+	font-family: 方正姚体;
+	text-align: left;
+	font-size: 28px;
+}
+
+#designownphonelist h3{
+	font-family: 微软雅黑;
+	text-align: center;
+}
+
+.listcollapse {
+	float: right;
+}
+
+#ownphoneorderform {
+	margin: 20px;
+	float: left;
+	display: none;
+}
+
+#ownphoneorderform ul{
+	list-style-type: none;
+	text-align: left;
+}
+
+.ownphoneorderformlist1 {
+	margin: 40px 20px;
+	width: 550px;
+	font-family: 方正姚体;
+	font-size: 28px;
+	color: rgb(236,0,140);
+}
+
+.ownphoneorderformlist2 {
+	margin: 20px;
+	font-family: 微软雅黑;
+	font-size: 17px;
+	color: #000000;
+}
+
+.ownphoneorderformlist2 li{
+	margin: 10px;
+}
+
+.namesandnumbersinput {
+	display: none;
+}
+
+#ownphoneorderprice {
+	color: #000000;
+	font-size: 40px;
+	text-align: center;
+	font-family: 黑体;
+}
+
+#backandsubmitul {
+	list-style-type: none;
+	margin: 50px;
+}
+
+#gobacklist {
+	cursor: pointer;
+	float: left;
+	width: 80px;
+	padding: 10px;
+	background-color: #009900;
+	color: #ffffff;
+	font-family: 微软雅黑;
+	font-size: 28px;
+	text-align: center;
+}
+
+#submitlist {
+	cursor: pointer;
+	float: right;
+	width: 160px;
+	padding: 10px;
+	background-color: #009900;
+	color: #ffffff;
+	font-family: 微软雅黑;
+	font-size: 28px;
+	text-align: center;
+}
+
+#previewownphoneimg {
+	float: right;
+}
+
+#previewownphoneimgmargin {
+	margin: 90px 100px 90px 10px;
+	width: 200px;
+}
+
+#previewownphoneimg h1{
+	font-family: 微软雅黑;
+	text-align: center;
+	font-size: 30px;
+}
+
 .designtable {
 	margin: 20px 20px 20px 20px;
 	border: 5px solid rgb(175, 226, 105);
@@ -240,7 +461,7 @@ img {
 }
 
 .designtable thead>tr>th{
-	background: rgb(175, 226, 105);
+	background-color: rgb(175, 226, 105);
 	font-weight: bold;
 	color: #ff00ff;
 	font-family: 黑体;
@@ -255,8 +476,9 @@ img {
 	color: #0000aa;
 	font-family: 微软雅黑;
 	font-size: 18px;
-	background: rgb(167, 232, 252);
-	list-style-type: none;
+	background-color: rgb(167, 232, 252);
+	list-style-image: url(../images/animated_favicon.gif);
+	list-style-position: inside;
 	padding: 20px;
 	height: 440px;
 	outline: rgb(167, 232, 252) double 7px;
@@ -264,7 +486,7 @@ img {
 
 .modifyinfolist li{
 	border-bottom: 2px dotted #ffffff;
-	padding: 5px;
+	padding: 5px 0;
 }
 
 .modifyinfolist a {
@@ -296,7 +518,7 @@ img {
 }
 
 .modifyaccountinfotable {
-	margin: 50px;
+	margin: 50px 50px 50px 30px;
 	border: 2px solid rgb(167, 232, 252);
 	font-size: 20px;
 	text-align: center;
@@ -306,7 +528,7 @@ img {
 
 table.modifyaccountinfotable thead>tr>th {
 	padding: 10px;
-	background: rgb(167, 232, 252);
+	background-color: rgb(167, 232, 252);
 	font-weight: bold;
 	color: #ff00ff;
 	font-family: 宋体;
@@ -318,7 +540,7 @@ table.modifyaccountinfotable tbody>tr>td {
 }
 
 .modifyaccountpasswordtable {
-	margin: 50px;
+	margin: 50px 50px 50px 30px;
 	border: 2px solid rgb(167, 232, 252);
 	font-size: 20px;
 	text-align: center;
@@ -328,7 +550,7 @@ table.modifyaccountinfotable tbody>tr>td {
 
 table.modifyaccountpasswordtable thead>tr>th {
 	padding: 10px;
-	background: rgb(167, 232, 252);
+	background-color: rgb(167, 232, 252);
 	font-weight: bold;
 	color: #ff00ff;
 	font-family: 宋体;
@@ -350,7 +572,7 @@ table.modifyaccountpasswordtable tbody>tr>td {
 
 table.registertable thead>tr>th {
 	padding: 5px;
-	background: rgb(251, 181, 85);
+	background-color: rgb(251, 181, 85);
 	font-weight: bold;
 	color: rgb(18, 60, 135);
 	font-family: 宋体;
@@ -410,7 +632,7 @@ table.ownphoneorderlisttable tr>td {
 }
 
 table.ownphoneorderlisttable thead>tr>th {
-	background: rgb(175, 226, 105);
+	background-color: rgb(175, 226, 105);
 	font-weight: bold;
 	color: rgb(18, 60, 135);
 	font-family: 宋体;
@@ -449,7 +671,7 @@ table.ownphoneorderlisttable tfoot>tr>td a:visited{
 
 table.ownphoneorderlisttable tfoot>tr>td a:hover{
 	color: rgb(45, 112, 213);
-	background: rgb(89, 142, 222);
+	background-color: rgb(89, 142, 222);
 	color: #ffffff;
 	text-decoration: none;
 }
@@ -471,22 +693,22 @@ table.ownphoneorderlisttable #modifylink a:hover {
 }
 
 table.ownphoneorderlisttable #separatedpage{
-	background: rgb(89, 142, 222);
+	background-color: rgb(89, 142, 222);
 	color: #ffffff;
 }
 
 table.ownphoneorderlisttable #separatedpage a:link{
-	background: rgb(89, 142, 222);
+	background-color: rgb(89, 142, 222);
 	color: #ffffff;
 }
 
 table.ownphoneorderlisttable #separatedpage a:visited{
-	background: rgb(89, 142, 222);
+	background-color: rgb(89, 142, 222);
 	color: #ffffff;
 }
 
 table.ownphoneorderlisttable #separatedpage a:hover{
-	background: rgb(89, 142, 222);
+	background-color: rgb(89, 142, 222);
 	color: #ffffff;
 }
 
@@ -528,7 +750,7 @@ table.serverstatistictable tr>td {
 }
 
 table.serverstatistictable thead>tr>th {
-	background: rgb(175, 226, 105);
+	background-color: rgb(175, 226, 105);
 	font-weight: bold;
 	color: rgb(18, 60, 135);
 	font-family: 宋体;

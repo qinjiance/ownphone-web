@@ -26,6 +26,18 @@ public class FormValidator {
 	public static final String CHECK_NICKNAME_REGEX = "^[\\s\\w\u4e00-\u9fa5]{1,10}$";
 
 	/**
+	 * Regular expression to check phone's name field, only allows Chinese,
+	 * English, numbers, underline. And blank in the middle. Also the length
+	 * ranges from 1 to 10.
+	 */
+	public static final String CHECK_PHONENAME_REGEX = "^[\\s\\w\u4e00-\u9fa5]{1,10}$";
+
+	/**
+	 * Regular expression to check digit fields, only allows numbers.
+	 */
+	public static final String CHECK_DIGIT_REGEX = "^\\d+$";
+
+	/**
 	 * Regular expression to check email field.
 	 */
 	public static final String CHECK_EMAIL_REGEX = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";

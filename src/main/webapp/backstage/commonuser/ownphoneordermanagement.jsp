@@ -69,9 +69,9 @@
 													<td>紧急呼叫按键：<br /><s:select name="ownPhoneOrderQuery.emergency" 
 														value="%{#request.ownPhoneOrderQuery.emergency}"
 														list="#{'':'所有','有':'有','无':'无'}" /></td>
-													<td>资费套餐：<br /><s:select name="ownPhoneOrderQuery.price" 
+													<td>手机价格：<br /><s:select name="ownPhoneOrderQuery.price" 
 														value="%{#request.ownPhoneOrderQuery.price}"
-														list="#{'':'所有','套餐50':'套餐50','套餐100':'套餐100','套餐500':'套餐500'}" /></td>
+														list="#{'':'所有','200':'200RMB','250':'250RMB','350':'350RMB','450':'450RMB'}" /></td>
 													<td>下单时间：<br /><s:select name="ownPhoneOrderQuery.ordertime" 
 														value="%{#request.ownPhoneOrderQuery.ordertime}"
 														list="#{'':'所有','latestthreemonthes':'三个月内','threemonthesago':'三个月前'}" /></td>
@@ -94,11 +94,11 @@
 										</td>
 										<td>机身<br />皮肤
 										</td>
-										<td>用户<br />姓名
+										<td>手机<br />名字
 										</td>
 										<td>紧急呼叫<br />按键
 										</td>
-										<td>资费套餐
+										<td>手机价格
 										</td>
 										<td>下单时间
 										</td>
@@ -119,7 +119,7 @@
 											<td>${ownPhoneOrder.phonestyle}</td>
 											<td>${ownPhoneOrder.name}</td>
 											<td>${ownPhoneOrder.emergency}</td>
-											<td>${ownPhoneOrder.price}</td>
+											<td>${ownPhoneOrder.price}RMB</td>
 											<% 
 												OwnPhoneOrder ownPhoneOrder = (OwnPhoneOrder)pageContext.getAttribute("ownPhoneOrder");
 												Date orderDate = new Date(ownPhoneOrder.getOrdertimemillis().longValue());
