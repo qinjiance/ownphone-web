@@ -218,7 +218,7 @@
 											<li>请选择：</li>
 											<li><table>
 													<tr>
-														<td><s:radio name="modifyingOwnPhoneOrder.emergency"
+														<td><s:radio cssStyle="margin-left: 40px;" name="modifyingOwnPhoneOrder.emergency"
 																value="%{#request.ownPhoneOrderToShow.emergency}"
 																label="是否有紧急呼叫按键" list="#{'有':'有','无':'无'}"
 																onclick="inputEmergency();" /></td>
@@ -234,14 +234,14 @@
 									<li>
 										<ul class="ownphoneorderformlist2">
 											<li><img id="namesandnumbersimg"
-													src="<%=path%>/images/ownphonepreview/default_phone.gif"
+													src="<%=path%>/images/ownphoneselect/2keypads.gif"
 													alt="预览图" /></li>
 											<li>请设置您的个性手机按键与号码。</li>
 											<li>每个名字对应一个电话号码，名字将被印在按键上面。</li>
 											<li>注意：请务必填写正确的电话号码</li>
 											<li>为了通用性，网站将不检查您的输入的有效性</li>
 											<li>
-												<table>
+												<table class="namesandnumberstb">
 													<thead>
 														<tr>
 															<th></th>
@@ -347,7 +347,7 @@
 								<c:if test="${sessionScope.loginAccount!=null}">
 									<ul id="backandsubmitul">
 										<li id="gobacklist"
-											onclick="showThenHide('designownphonelist','ownphoneorderform')">后退</li>
+											onclick="showThenHide('designownphonelist','ownphoneorderform')">更改外观</li>
 										<li id="submitlist"
 											onclick="document.getElementById('ownphoneorderform').submit();">提交订单</li>
 										<li class="clear"></li>
@@ -356,12 +356,10 @@
 							</s:form>
 
 							<div id="previewownphoneimg">
-								<div id="previewownphoneimgmargin">
-									<h1>您的个性手机</h1>
+								<h1>您的个性手机</h1>
 
-									<img id="previewimg" alt="预览图" 
+								<img id="previewimg" alt="预览图" 
 										src="<%=path%>/images/ownphonepreview/default_phone.gif" />
-								</div>
 							</div>
 
 							<div class="clear"></div>

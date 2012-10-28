@@ -192,16 +192,19 @@ function preview() {
 	var previewImg = document.getElementById("previewimg");
 	var oldImgUrl = previewImg.src;
 	var imageUrl = oldImgUrl.slice(0, oldImgUrl.lastIndexOf("/") + 1);
-	var namesAndNumbersImgUrl = imageUrl;
+	
+	var namesAndNumbersImg = document.getElementById("namesandnumbersimg");
+	var oldNamesAndNumbersImgUrl = namesAndNumbersImg.src;
+	var namesAndNumbersImgUrl = oldNamesAndNumbersImgUrl.slice(0, oldNamesAndNumbersImgUrl.lastIndexOf("/") + 1);
 
 	if (keypadValue == null || keypadValue.length == 0) {
 
 		imageUrl += "default_phone";
-		namesAndNumbersImgUrl = imageUrl;
+		namesAndNumbersImgUrl += "2keypads";
 	} else {
 
 		imageUrl += keypadValue;
-		namesAndNumbersImgUrl = imageUrl;
+		namesAndNumbersImgUrl += keypadValue + "keypads";
 
 		if (phonecolorValue != null && phonecolorValue.length != 0) {
 
@@ -253,7 +256,7 @@ function preview() {
 	namesAndNumbersImgUrl += ".gif";
 
 	previewImg.src = imageUrl;
-	document.getElementById("namesandnumbersimg").src = namesAndNumbersImgUrl;
+	namesAndNumbersImg.src = namesAndNumbersImgUrl;
 
 	showNamesAndNumbersInuput();
 	showTotalPrice();
@@ -270,11 +273,11 @@ function showNamesAndNumbersInuput() {
 
 			if (k <= keypadValue) {
 				if (inputObj != null) {
-					inputObj.style.display = "block";
+					inputObj.style.display = "table-row";
 				}
 
 				if (lineObj != null) {
-					lineObj.style.display = "block";
+					lineObj.style.display = "table-row";
 				}
 			} else {
 				if (inputObj != null) {
