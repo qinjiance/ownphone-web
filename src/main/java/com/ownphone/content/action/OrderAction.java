@@ -176,11 +176,14 @@ public class OrderAction extends ActionSupport {
 
 		final int ITEMS = 10;
 
-		int requestPage = Integer.valueOf(
-				ServletActionContext.getRequest().getParameter("page"))
-				.intValue();
+		int requestPage = 1;
 
-		requestPage = requestPage <= 1 ? 1 : requestPage;
+		String requestPageStr = ServletActionContext.getRequest().getParameter(
+				"page");
+
+		if (requestPageStr != null && !requestPageStr.isEmpty()) {
+			requestPage = Integer.valueOf(requestPageStr).intValue();
+		}
 
 		int starts = ITEMS * (requestPage - 1);
 		int ends = ITEMS * requestPage - 1;
@@ -281,11 +284,14 @@ public class OrderAction extends ActionSupport {
 
 		final int ITEMS = 10;
 
-		int requestPage = Integer.valueOf(
-				ServletActionContext.getRequest().getParameter("page"))
-				.intValue();
+		int requestPage = 1;
 
-		requestPage = requestPage <= 1 ? 1 : requestPage;
+		String requestPageStr = ServletActionContext.getRequest().getParameter(
+				"page");
+
+		if (requestPageStr != null && !requestPageStr.isEmpty()) {
+			requestPage = Integer.valueOf(requestPageStr).intValue();
+		}
 
 		int starts = ITEMS * (requestPage - 1);
 		int ends = ITEMS * requestPage - 1;

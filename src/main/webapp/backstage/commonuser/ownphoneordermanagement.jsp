@@ -228,6 +228,13 @@
 														}
 												}
 											%>
+											
+											<input id="gotopage" type="text" name="goToPage" value="<%=currentPage%>" 
+												size="5" maxlength="5" />
+												
+											<img style="cursor: pointer;" src="<%=path%>/images/go.gif" alt="跳转" 
+												onclick="document.getElementById('pagehiddenfield').value=document.getElementById('gotopage').value; 
+												document.all.ownPhoneOrderQuery.submit();return false;" />
 										</td>
 									</tr>
 								</tfoot>
