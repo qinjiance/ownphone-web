@@ -297,7 +297,7 @@ img {
 }
 
 .phonestyleimg {
-	margin: 20px 10px;
+	margin: 20px 30px;
 	width: 100px;
 	height: 80px;
 	cursor: pointer;
@@ -463,14 +463,14 @@ img {
 
 .designtable {
 	margin: 20px 20px 20px 20px;
-	border: 5px solid rgb(175, 226, 105);
+	border: 5px solid rgb(203, 213, 228);
 	font-size: 20px;
 	color: #000000;
 	font-family: "微软雅黑";
 }
 
 .designtable thead>tr>th{
-	background-color: rgb(175, 226, 105);
+	background-color: rgb(203, 213, 228);
 	font-weight: bold;
 	color: #ff00ff;
 	font-family: 黑体;
@@ -485,12 +485,12 @@ img {
 	color: #0000aa;
 	font-family: 微软雅黑;
 	font-size: 18px;
-	background-color: rgb(167, 232, 252);
+	background-color: rgb(203, 213, 228);
 	list-style-image: url(../images/animated_favicon.gif);
 	list-style-position: inside;
 	padding: 20px;
 	height: 440px;
-	outline: rgb(167, 232, 252) double 7px;
+	outline: rgb(203, 213, 228) double 7px;
 }
 
 .modifyinfolist li{
@@ -528,7 +528,7 @@ img {
 
 .modifyaccountinfotable {
 	margin: 50px 50px 50px 30px;
-	border: 2px solid rgb(167, 232, 252);
+	border: 2px solid rgb(203, 213, 228);
 	font-size: 20px;
 	text-align: center;
 	color: #000000;
@@ -537,7 +537,7 @@ img {
 
 table.modifyaccountinfotable thead>tr>th {
 	padding: 10px;
-	background-color: rgb(167, 232, 252);
+	background-color: rgb(203, 213, 228);
 	font-weight: bold;
 	color: #ff00ff;
 	font-family: 宋体;
@@ -550,7 +550,7 @@ table.modifyaccountinfotable tbody>tr>td {
 
 .modifyaccountpasswordtable {
 	margin: 50px 50px 50px 30px;
-	border: 2px solid rgb(167, 232, 252);
+	border: 2px solid rgb(203, 213, 228);
 	font-size: 20px;
 	text-align: center;
 	color: #000000;
@@ -559,7 +559,7 @@ table.modifyaccountinfotable tbody>tr>td {
 
 table.modifyaccountpasswordtable thead>tr>th {
 	padding: 10px;
-	background-color: rgb(167, 232, 252);
+	background-color: rgb(203, 213, 228);
 	font-weight: bold;
 	color: #ff00ff;
 	font-family: 宋体;
@@ -573,15 +573,16 @@ table.modifyaccountpasswordtable tbody>tr>td {
 /* register page */
 .registertable {
 	margin: 50px;
-	border: 2px solid rgb(251, 181, 85);
+	border: 2px solid rgb(203, 213, 228);
 	font-size: 15px;
+	width: 650px;
 	color: #000000;
 	font-family: "微软雅黑";
 }
 
 table.registertable thead>tr>th {
 	padding: 5px;
-	background-color: rgb(251, 181, 85);
+	background-color: rgb(203, 213, 228);
 	font-weight: bold;
 	color: rgb(18, 60, 135);
 	font-family: 宋体;
@@ -625,15 +626,15 @@ table.registertable tbody>tr>td {
 .ownphoneorderlisttable {
 	margin: 40px;
 	border-collapse: separate;
-	border: 5px solid rgb(175, 226, 105);
+	border: 5px solid rgb(203, 213, 228);
 	font-size: 15px;
 	color: #000000;
 	font-family: "微软雅黑";
 }
 
 table.ownphoneorderlisttable tr>td {
-	border-top: 1px dotted rgb(253, 215, 164);
-	border-bottom: 1px dotted rgb(253, 215, 164);
+	border-top: 1px dotted rgb(203, 213, 228);
+	border-bottom: 1px dotted rgb(203, 213, 228);
 	border-left: 0;
 	border-right: 0;
 	padding: 5px;
@@ -641,7 +642,7 @@ table.ownphoneorderlisttable tr>td {
 }
 
 table.ownphoneorderlisttable thead>tr>th {
-	background-color: rgb(175, 226, 105);
+	background-color: rgb(203, 213, 228);
 	font-weight: bold;
 	color: rgb(18, 60, 135);
 	font-family: 宋体;
@@ -650,7 +651,7 @@ table.ownphoneorderlisttable thead>tr>th {
 }
 
 table.ownphoneorderlisttable thead>tr>td {
-	border: 1px dotted rgb(253, 215, 164);
+	border: 1px dotted rgb(203, 213, 228);
 	white-space: nowrap;
 	font-weight: bold;
 	color: rgb(18, 60, 135);
@@ -659,13 +660,14 @@ table.ownphoneorderlisttable thead>tr>td {
 }
 
 table.ownphoneorderlisttable tbody>tr:hover{
-	background-color: rgb(175, 226, 105);
+	background-color: rgb(203, 213, 228);
 }
 
 table.ownphoneorderlisttable tfoot>tr>td {
 	color: rgb(45, 112, 213);
 	font-family: 微软雅黑;
 	font-size: 15px;
+	padding: 10px;
 }
 
 table.ownphoneorderlisttable tfoot>tr>td a:link{
@@ -737,7 +739,7 @@ table.ownphoneorderquerytable{
 table.ownphoneorderquerytable tr>td{
 	white-space: nowrap;
 	color: white;
-	background-color: rgb(124, 189, 36);
+	background-color: rgb(203, 213, 228);
 	padding: 5px;
 	border-right: 1px solid white;
 }
@@ -746,20 +748,20 @@ table.ownphoneorderquerytable tr>td{
 .serverstatistictable {
 	margin: 50px;
 	border-collapse: separate;
-	border: 5px solid rgb(175, 226, 105);
+	border: 5px solid rgb(203, 213, 228);
 	font-size: 11px;
 	text-align: center;
 	color: #000000;
 	font-family: "微软雅黑";
 }
 
-table.serverstatistictable tr>td {
-	border: 1px dotted rgb(253, 215, 164);
+table.serverstatistictable thead>tr>td {
+	border: 1px dotted rgb(203, 213, 228);
 	padding: 5px;
 }
 
 table.serverstatistictable thead>tr>th {
-	background-color: rgb(175, 226, 105);
+	background-color: rgb(203, 213, 228);
 	font-weight: bold;
 	color: rgb(18, 60, 135);
 	font-family: 宋体;
@@ -772,4 +774,14 @@ table.serverstatistictable thead>tr>td {
 	color: rgb(18, 60, 135);
 	font-family: 微软雅黑;
 	font-size: 15px;
+}
+
+table.serverstatistictable tbody>tr:hover{
+	background-color: rgb(203, 213, 228);
+}
+
+table.serverstatistictable tbody>tr>td {
+	border-top: 1px dotted rgb(203, 213, 228);
+	border-bottom: 1px dotted rgb(203, 213, 228);
+	padding: 5px;
 }

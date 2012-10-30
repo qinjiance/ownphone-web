@@ -60,19 +60,16 @@
 														.getModifytimemillis().longValue());
 									%>
 									<tr>
-										<th style="padding: 15px; color: #00aaaa; font-family: 宋体; font-size: 15px">
+										<th style="padding: 15px; font-family: 宋体; font-size: 15px">
 
 											下单时间：<fmt:formatDate value="<%=orderDate%>"
 												pattern="yyyy-MM-dd HH:mm:ss" />
 										</th>
-										<th style="padding: 15px; color: #00aaaa; font-family: 宋体; font-size: 15px">
+										<th style="padding: 15px; font-family: 宋体; font-size: 15px">
 
 											最近修改：<fmt:formatDate value="<%=modifyDate%>"
 												pattern="yyyy-MM-dd HH:mm:ss" />
 										</th>
-									</tr>
-									<tr>
-										<td></td>
 									</tr>
 								</thead>
 							</table>
@@ -347,9 +344,9 @@
 								<c:if test="${sessionScope.loginAccount!=null}">
 									<ul id="backandsubmitul">
 										<li id="gobacklist"
-											onclick="showThenHide('designownphonelist','ownphoneorderform')">更改外观</li>
+											onclick="showThenHide('designownphonelist','ownphoneorderform')"><h3>更改外观</h3></li>
 										<li id="submitlist"
-											onclick="document.getElementById('ownphoneorderform').submit();">提交订单</li>
+											onclick="document.getElementById('ownphoneorderform').submit();"><h3>提交订单</h3></li>
 										<li class="clear"></li>
 									</ul>
 								</c:if>

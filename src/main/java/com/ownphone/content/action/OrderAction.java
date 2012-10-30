@@ -5,13 +5,17 @@ package com.ownphone.content.action;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.ownphone.content.bean.LoginInfo;
 import com.ownphone.content.bean.OwnPhoneOrderQueryForm;
 import com.ownphone.content.dao.HibernateOperateException;
 import com.ownphone.content.dao.OwnPhoneOrderDAO;
@@ -20,6 +24,7 @@ import com.ownphone.content.po.Administrator;
 import com.ownphone.content.po.CommonUser;
 import com.ownphone.content.po.IUser;
 import com.ownphone.content.po.OwnPhoneOrder;
+import com.ownphone.util.CommonUserAccountUtil;
 import com.ownphone.util.FormValidator;
 
 /**
@@ -372,12 +377,39 @@ public class OrderAction extends ActionSupport {
 	 */
 	public String addOwnPhoneOrder() {
 
-		if (!validateLogin()) {
-			return "validateloginfailed";
-		}
-
 		if (!validateOwnPhoneOrder(ownPhoneOrder, "ownPhoneOrder")) {
 			return "validateaddingorderfailed";
+		}
+
+		CommonUser newCommonUser = null;
+
+		if (!validateLogin()) {
+			// Auto register is non-login
+			try {
+				newCommonUser = CommonUserAccountUtil.createRandomCommonUser();
+			} catch (HibernateOperateException e) {
+				this.addActionMessage("操作失败，请重试，或联系管理员。");
+				return "addfeedback";
+			}
+
+			if (newCommonUser != null) {
+				HttpServletRequest requestObj = ServletActionContext
+						.getRequest();
+
+				// Store the user login info
+				LoginInfo loginInfo = new LoginInfo();
+				loginInfo.setLoginip(requestObj.getRemoteAddr());
+				loginInfo.setLoginhost(requestObj.getRemoteHost());
+				loginInfo.setLogindatatime(new Date());
+
+				// Remove the user password for security
+				newCommonUser.setPassword(null);
+
+				// loginInfo must be added in front of loginAccount, because
+				// LoginSessionListener will use loginInfo first.
+				session.put("loginInfo", loginInfo);
+				session.put("loginAccount", newCommonUser);
+			}
 		}
 
 		ownPhoneOrder.setBelongtouseraccount(((IUser) (session
@@ -391,15 +423,22 @@ public class OrderAction extends ActionSupport {
 
 		try {
 			returnOwnPhone = ownPhoneOrderDAO.addOwnPhoneOrder(ownPhoneOrder);
+
+			if (returnOwnPhone != null) {
+				this.addActionMessage("订单提交成功！");
+			} else {
+				this.addActionMessage("订单提交失败，请重下订单！");
+			}
 		} catch (HibernateOperateException e) {
 			this.addActionMessage("操作失败，请重试，或联系管理员。");
-			return "addfeedback";
 		}
 
-		if (returnOwnPhone != null) {
-			this.addActionMessage("订单提交成功！");
-		} else {
-			this.addActionMessage("订单提交失败，请重下订单！");
+		if (newCommonUser != null) {
+			this.addActionMessage("\n");
+			this.addActionMessage("系统已自动为您创建一个新用户！");
+			this.addActionMessage("您的订单已自动归入该用户所属。");
+			this.addActionMessage("用户名：" + newCommonUser.getUseraccount());
+			this.addActionMessage("密码与用户名相同，请及时修改密码！");
 		}
 
 		return "addfeedback";

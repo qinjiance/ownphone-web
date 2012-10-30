@@ -62,7 +62,7 @@ public class CommonUserDAOImpl implements CommonUserDAO {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 
-			throw new HibernateOperateException(e.getMessage());
+			throw new HibernateOperateException(e.getMessage(), e);
 		}
 
 	}
@@ -112,7 +112,7 @@ public class CommonUserDAOImpl implements CommonUserDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
-			throw new HibernateOperateException(e.getMessage());
+			throw new HibernateOperateException(e.getMessage(), e);
 		}
 
 	}
@@ -158,7 +158,7 @@ public class CommonUserDAOImpl implements CommonUserDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
-			throw new HibernateOperateException(e.getMessage());
+			throw new HibernateOperateException(e.getMessage(), e);
 		}
 
 	}
@@ -195,7 +195,7 @@ public class CommonUserDAOImpl implements CommonUserDAO {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 
-			throw new HibernateOperateException(e.getMessage());
+			throw new HibernateOperateException(e.getMessage(), e);
 		}
 
 	}
@@ -254,7 +254,7 @@ public class CommonUserDAOImpl implements CommonUserDAO {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 
-			throw new HibernateOperateException(e.getMessage());
+			throw new HibernateOperateException(e.getMessage(), e);
 		}
 
 	}

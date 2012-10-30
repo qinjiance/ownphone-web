@@ -138,8 +138,7 @@
 							</tbody>
 							<tfoot>
 								<tr>
-									<td style="text-align: center; padding:10px;" colspan="2"><input type="image" src="<%=path%>/images/registernow.gif" alt="注册" /></td>
-									<td style="text-align: left; padding:10px;"><s:reset value="重置" /></td>
+									<td style="text-align: center; padding:10px;" colspan="3"><input type="image" src="<%=path%>/images/registernow.gif" alt="注册" /></td>
 								</tr>
 							</tfoot>
 						</table>

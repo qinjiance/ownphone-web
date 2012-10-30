@@ -82,6 +82,7 @@ public class LoginAction extends ActionSupport {
 			// Confirm administrator
 			try {
 				confirmUser = administratorDAO.loginConfirm(loginUser);
+				
 			} catch (HibernateOperateException e) {
 				this.addFieldError("loginerror", "操作失败，请重试，或联系管理官！");
 				return "loginfailed";
