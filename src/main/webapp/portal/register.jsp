@@ -138,10 +138,8 @@
 							</tbody>
 							<tfoot>
 								<tr>
-									<td colspan="3" align="center"><s:submit value="注册" /></td>
-								</tr>
-								<tr>
-									<td colspan="3" align="center"><s:reset value="重置" /></td>
+									<td style="text-align: center; padding:10px;" colspan="2"><input type="image" src="<%=path%>/images/registernow.gif" alt="注册" /></td>
+									<td style="text-align: left; padding:10px;"><s:reset value="重置" /></td>
 								</tr>
 							</tfoot>
 						</table>

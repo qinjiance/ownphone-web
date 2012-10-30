@@ -79,7 +79,7 @@
 														 maxlength="12" value="%{#request.ordernumberquery}" /></td>	
 														
 													<td><s:hidden id="pagehiddenfield" name="page" value="1"/>
-														<s:submit value="查询"/></td>
+														<input type="image" alt="搜索" src="<%=path%>/images/search.gif" /></td>
 												</tr>
 											</table>
 										</td>

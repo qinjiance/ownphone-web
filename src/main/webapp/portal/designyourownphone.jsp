@@ -258,15 +258,13 @@
 							</li>
 						</ul>
 
-						<c:if test="${sessionScope.loginAccount!=null}">
-							<ul id="backandsubmitul">
-								<li id="gobacklist"
-									onclick="showThenHide('designownphonelist','ownphoneorderform')">更改外观</li>
-								<li id="submitlist"
-									onclick="document.getElementById('ownphoneorderform').submit();">提交订单</li>
-								<li class="clear"></li>
-							</ul>
-						</c:if>
+						<ul id="backandsubmitul">
+							<li id="gobacklist"
+								onclick="showThenHide('designownphonelist','ownphoneorderform')"><h3>更改外观</h3></li>
+							<li id="submitlist"
+								onclick="document.getElementById('ownphoneorderform').submit();"><h3>提交订单</h3></li>
+							<li class="clear"></li>
+						</ul>
 					</s:form>
 
 					<div id="previewownphoneimg">

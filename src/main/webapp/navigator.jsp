@@ -14,8 +14,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
 <link type="text/css" rel="stylesheet" href="<%=path%>/css/style1.css" />
-<link rel="shortcut icon" href="<%=path%>/images/favicon.ico" type="image/x-icon" />
-<link rel="icon" href="<%=path%>/images/animated_favicon1.gif" type="image/gif" />
+<link rel="shortcut icon" href="<%=path%>/images/favicon.ico"
+	type="image/x-icon" />
+<link rel="icon" href="<%=path%>/images/animated_favicon1.gif"
+	type="image/gif" />
 <link rel="Bookmark" href="<%=path%>/images/favicon.ico" />
 <!-- struts2 style, can set the s:xxx's label to italic, also set them to red when field error occurs-->
 <s:head />
@@ -25,7 +27,8 @@
 	if (message != null) {
 %>
 <script language="javascript" type="text/javascript">
-	location.href = "<%=path%>/logout.jsp";
+	location.href = "<%=path%>
+	/logout.jsp";
 </script>
 <%
 	}
@@ -35,7 +38,7 @@
 <body>
 	<center>
 		<div class="navigbg">
-		
+
 			<table class="navigtable1">
 				<tr>
 					<td class="tab1"><a href="<%=path%>/index.jsp">个性<br />手机
@@ -93,14 +96,11 @@
 										</tr>
 									</table>
 								</td>
-								<td>
-									<table>
-										<tr>
-											<td><input type="submit" value="登陆" /></td>
-											<td><a href="<%=path%>/portal/register.jsp">注册</a></td>
-										</tr>
-									</table>
-								</td>
+								<td><input type="image" src="<%=path%>/images/login.gif"
+									alt="登陆" /></td>
+								<td><img style="cursor: pointer;"
+										src="<%=path%>/images/register.gif" alt="注册"
+										onclick="window.location.href='<%=path%>/portal/register.jsp'" /></td>
 							</tr>
 						</table>
 					</s:form>
@@ -161,7 +161,7 @@
 					</table>
 				</c:when>
 			</c:choose>
-			
+
 		</div>
 	</center>
 </body>
