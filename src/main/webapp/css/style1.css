@@ -38,7 +38,6 @@
 
 .tab1 {
 	background-color: #ffffff;
-	filter: Alpha(Opacity = 90);
 	width: 150px;
 	height: 100px;
 	padding: 5px;
@@ -48,6 +47,11 @@
 	font-family:华文行楷;
 	font-weight:bold;
 	border-radius: 0 0 25px 25px;
+		/* transparency */
+	opacity: 0.8;                /* Firefox, Safari(WebKit), Opera)
+    filter: "alpha(opacity=80)"; /* IE 8 */
+    filter: alpha(opacity=80);   /* IE 4-7 */
+    zoom: 1;                     /* needed in IE up to version 7, or set width or height to trigger "hasLayout" */ 
 }
 
 .tab1 a:link {
@@ -72,7 +76,6 @@
 
 .tab2 {
 	background-color: #ffffff;
-	filter: Alpha(Opacity = 90);
 	width: 90px;
 	height: 60px;
 	padding: 5px;
@@ -81,6 +84,11 @@
 	text-align: center;
 	font-weight:bold;
 	border-radius: 0 0 20px 20px;
+		/* transparency */
+	opacity: 0.8;                /* Firefox, Safari(WebKit), Opera)
+    filter: "alpha(opacity=80)"; /* IE 8 */
+    filter: alpha(opacity=80);   /* IE 4-7 */
+    zoom: 1;                     /* needed in IE up to version 7, or set width or height to trigger "hasLayout" */ 
 }
 
 .tab2 a:link {
@@ -105,7 +113,6 @@
 
 .navigtitle {
 	background-color: #ffffff;
-	filter: Alpha(Opacity = 90);
 	border: 0;
 	width: 350px;
 	height: 60px;
@@ -116,6 +123,11 @@
 	position: absolute;
 	bottom: 0;
 	left: 15px;
+		/* transparency */
+	opacity: 0.8;                /* Firefox, Safari(WebKit), Opera)
+    filter: "alpha(opacity=80)"; /* IE 8 */
+    filter: alpha(opacity=80);   /* IE 4-7 */
+    zoom: 1;                     /* needed in IE up to version 7, or set width or height to trigger "hasLayout" */ 
 }
 
 .naviglogin {
@@ -135,7 +147,6 @@
 
 .navigcommonuser {
 	background-color: #ffffff;
-	filter: Alpha(Opacity = 80);
 	border: 0;
 	height: 35px;
 	padding: 0;
@@ -147,11 +158,15 @@
 	position: absolute;
 	bottom: 0;
 	right: 12px;
+		/* transparency */
+	opacity: 0.8;                /* Firefox, Safari(WebKit), Opera)
+    filter: "alpha(opacity=80)"; /* IE 8 */
+    filter: alpha(opacity=80);   /* IE 4-7 */
+    zoom: 1;                     /* needed in IE up to version 7, or set width or height to trigger "hasLayout" */ 
 }
 
 .navigadmin {
 	background-color: #ffffff;
-	filter: Alpha(Opacity = 80);
 	border: 0;
 	height: 35px;
 	padding: 0;
@@ -163,6 +178,11 @@
 	position: absolute;
 	bottom: 0;
 	right: 12px;
+		/* transparency */
+	opacity: 0.8;                /* Firefox, Safari(WebKit), Opera)
+    filter: "alpha(opacity=80)"; /* IE 8 */
+    filter: alpha(opacity=80);   /* IE 4-7 */
+    zoom: 1;                     /* needed in IE up to version 7, or set width or height to trigger "hasLayout" */ 
 }
 
 .navigloginfuction {

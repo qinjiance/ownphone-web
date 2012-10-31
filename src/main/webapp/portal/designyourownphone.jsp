@@ -17,7 +17,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
 <link type="text/css" rel="stylesheet" href="<%=path%>/css/style1.css" />
-<script type="text/javascript" src="<%=path%>/js/ownphoneordersubmit.js"></script>
+<script type="text/javascript" src="<%=path%>/js/OwnPhoneOrderSubmit.js"></script>
 
 <title><%=location%></title>
 <!-- struts2 style, can set the s:xxx's label to italic, also set them to red when field error occurs-->

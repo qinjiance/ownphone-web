@@ -182,7 +182,9 @@ public class OrderAction extends ActionSupport {
 				"page");
 
 		if (requestPageStr != null && !requestPageStr.isEmpty()) {
-			requestPage = Integer.valueOf(requestPageStr).intValue();
+			if (requestPageStr.matches("^\\d+$")) {
+				requestPage = Integer.valueOf(requestPageStr).intValue();
+			}
 		}
 
 		int starts = ITEMS * (requestPage - 1);
@@ -290,7 +292,9 @@ public class OrderAction extends ActionSupport {
 				"page");
 
 		if (requestPageStr != null && !requestPageStr.isEmpty()) {
-			requestPage = Integer.valueOf(requestPageStr).intValue();
+			if (requestPageStr.matches("^\\d+$")) {
+				requestPage = Integer.valueOf(requestPageStr).intValue();
+			}
 		}
 
 		int starts = ITEMS * (requestPage - 1);
