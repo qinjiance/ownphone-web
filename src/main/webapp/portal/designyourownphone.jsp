@@ -252,7 +252,7 @@
 									<li>个性手机的定价标准为：</li>
 									<li>2个按键为200RMB，每增加2个按键加价50RMB</li>
 									<li>根据你的订制，您的个性手机价格为：</li>
-									<li><span id="ownphoneorderprice">200</span>RMB</li>
+									<li>￥<span id="ownphoneorderprice">200</span></li>
 									<li><s:hidden name="ownPhoneOrder.price" /></li>
 								</ul>
 							</li>

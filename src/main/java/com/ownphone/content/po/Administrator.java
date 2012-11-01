@@ -212,4 +212,44 @@ public class Administrator implements IUser, Serializable {
 		return this.getRegistertimemillis().longValue();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.ownphone.content.po.IUser#fetchNickname()
+	 */
+	@Override
+	public String fetchNickname() {
+		return this.getNickname();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.ownphone.content.po.IUser#fetchRealname()
+	 */
+	@Override
+	public String fetchRealname() {
+		return this.getRealname();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.ownphone.content.po.IUser#fetchMobilephone()
+	 */
+	@Override
+	public String fetchMobilephone() {
+		return this.getMobilephone();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.ownphone.content.po.IUser#fetchEmail()
+	 */
+	@Override
+	public String fetchEmail() {
+		return this.getEmail();
+	}
+
 }

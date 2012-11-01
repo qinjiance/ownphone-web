@@ -16,7 +16,8 @@
 			<!-- addOwnPhoneOrder -->
 			<result name="addfeedback">/showresultmessage.jsp</result>
 			<result name="validateaddingorderfailed">/portal/designyourownphone.jsp</result>
-
+			<result name="addordersuccess">/backstage/selectpayway.jsp</result>
+			
 			<!-- showCommonUserOwnPhoneOrders -->
 			<result name="findownphoneorderserror">/showresultmessage.jsp</result>
 			<result name="findcommonuserownphoneorderssuccess">/backstage/commonuser/ownphoneordermanagement.jsp

@@ -419,6 +419,13 @@ public class OrderAction extends ActionSupport {
 				// LoginSessionListener will use loginInfo first.
 				session.put("loginInfo", loginInfo);
 				session.put("loginAccount", newCommonUser);
+
+				// Add notification messages
+				this.addActionMessage("系统已自动为您创建一个新用户！");
+				this.addActionMessage("您的订单已自动归入该用户所属。");
+				this.addActionMessage("用户名：" + newCommonUser.getUseraccount());
+				this.addActionMessage("密码与用户名相同，请及时修改密码！");
+				this.addActionMessage("\n");
 			}
 		}
 
@@ -435,20 +442,15 @@ public class OrderAction extends ActionSupport {
 			returnOwnPhone = ownPhoneOrderDAO.addOwnPhoneOrder(ownPhoneOrder);
 
 			if (returnOwnPhone != null) {
+				request.put("ownPhoneOrderToShow", returnOwnPhone);
 				this.addActionMessage("订单提交成功！");
+				
+				return "addordersuccess";
 			} else {
 				this.addActionMessage("订单提交失败，请重下订单！");
 			}
 		} catch (HibernateOperateException e) {
 			this.addActionMessage("操作失败，请重试，或联系管理员。");
-		}
-
-		if (newCommonUser != null) {
-			this.addActionMessage("\n");
-			this.addActionMessage("系统已自动为您创建一个新用户！");
-			this.addActionMessage("您的订单已自动归入该用户所属。");
-			this.addActionMessage("用户名：" + newCommonUser.getUseraccount());
-			this.addActionMessage("密码与用户名相同，请及时修改密码！");
 		}
 
 		return "addfeedback";
