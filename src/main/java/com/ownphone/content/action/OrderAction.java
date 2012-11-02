@@ -26,6 +26,7 @@ import com.ownphone.content.po.IUser;
 import com.ownphone.content.po.OwnPhoneOrder;
 import com.ownphone.util.CommonUserAccountUtil;
 import com.ownphone.util.FormValidator;
+import com.ownphone.util.OwnPhoneOrderUtil;
 
 /**
  * @author Jiance Qin
@@ -237,6 +238,7 @@ public class OrderAction extends ActionSupport {
 								ownPhoneOrderQuery.getPhonestyle(),
 								ownPhoneOrderQuery.getEmergency(),
 								ownPhoneOrderQuery.getPrice(),
+								ownPhoneOrderQuery.getStatus(),
 								ownPhoneOrderQuery.getOrdertime()));
 
 				// Query order list
@@ -250,6 +252,7 @@ public class OrderAction extends ActionSupport {
 								ownPhoneOrderQuery.getPhonestyle(),
 								ownPhoneOrderQuery.getEmergency(),
 								ownPhoneOrderQuery.getPrice(),
+								ownPhoneOrderQuery.getStatus(),
 								ownPhoneOrderQuery.getOrdertime());
 			}
 		} catch (HibernateOperateException e) {
@@ -347,6 +350,7 @@ public class OrderAction extends ActionSupport {
 								ownPhoneOrderQuery.getPhonestyle(),
 								ownPhoneOrderQuery.getEmergency(),
 								ownPhoneOrderQuery.getPrice(),
+								ownPhoneOrderQuery.getStatus(),
 								ownPhoneOrderQuery.getOrdertime()));
 
 				// Query order list
@@ -359,6 +363,7 @@ public class OrderAction extends ActionSupport {
 								ownPhoneOrderQuery.getPhonestyle(),
 								ownPhoneOrderQuery.getEmergency(),
 								ownPhoneOrderQuery.getPrice(),
+								ownPhoneOrderQuery.getStatus(),
 								ownPhoneOrderQuery.getOrdertime());
 			}
 		} catch (HibernateOperateException e) {
@@ -435,6 +440,7 @@ public class OrderAction extends ActionSupport {
 		Long systemCurrentTimeMillis = Long.valueOf(System.currentTimeMillis());
 		ownPhoneOrder.setOrdertimemillis(systemCurrentTimeMillis);
 		ownPhoneOrder.setModifytimemillis(systemCurrentTimeMillis);
+		ownPhoneOrder.setStatus(OwnPhoneOrderUtil.ORDER_STATUS_NOPAY);
 
 		OwnPhoneOrder returnOwnPhone;
 
@@ -444,7 +450,7 @@ public class OrderAction extends ActionSupport {
 			if (returnOwnPhone != null) {
 				request.put("ownPhoneOrderToShow", returnOwnPhone);
 				this.addActionMessage("订单提交成功！");
-				
+
 				return "addordersuccess";
 			} else {
 				this.addActionMessage("订单提交失败，请重下订单！");

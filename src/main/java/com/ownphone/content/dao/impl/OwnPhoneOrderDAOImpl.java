@@ -136,15 +136,15 @@ public class OwnPhoneOrderDAOImpl implements OwnPhoneOrderDAO {
 	 * com.ownphone.content.dao.OwnPhoneOrderDAO#findOwnPhoneOrdersWithConditions
 	 * (java.lang.String, int, int, java.lang.String, java.lang.String,
 	 * java.lang.String, java.lang.String, java.lang.String, java.lang.String,
-	 * java.lang.String, java.lang.String)
+	 * java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<OwnPhoneOrder> findOwnPhoneOrdersWithConditions(
 			String belongToUseraccount, int starts, int ends, String ordertype,
 			String orderdirection, String keypad, String phonecolor,
-			String phonestyle, String emergency, String price, String ordertime)
-			throws HibernateOperateException {
+			String phonestyle, String emergency, String price, String status,
+			String ordertime) throws HibernateOperateException {
 
 		int items = ends - starts + 1;
 
@@ -169,6 +169,10 @@ public class OwnPhoneOrderDAOImpl implements OwnPhoneOrderDAO {
 
 		if (price != null && !price.isEmpty()) {
 			hql.append(" and o.price=:price");
+		}
+
+		if (status != null && !status.isEmpty()) {
+			hql.append(" and o.status=:status");
 		}
 
 		if (ordertime != null && !ordertime.isEmpty()) {
@@ -226,6 +230,10 @@ public class OwnPhoneOrderDAOImpl implements OwnPhoneOrderDAO {
 
 			if (price != null && !price.isEmpty()) {
 				query.setParameter("price", price);
+			}
+
+			if (status != null && !status.isEmpty()) {
+				query.setParameter("status", status);
 			}
 
 			if (ordertime != null && !ordertime.isEmpty()) {
@@ -342,13 +350,13 @@ public class OwnPhoneOrderDAOImpl implements OwnPhoneOrderDAO {
 	 * @see
 	 * com.ownphone.content.dao.OwnPhoneOrderDAO#sizeOfOwnPhoneOrdersWithConditions
 	 * (java.lang.String, java.lang.String, java.lang.String, java.lang.String,
-	 * java.lang.String, java.lang.String, java.lang.String)
+	 * java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public int sizeOfOwnPhoneOrdersWithConditions(String belongToUseraccount,
 			String keypad, String phonecolor, String phonestyle,
-			String emergency, String price, String ordertime)
+			String emergency, String price, String status, String ordertime)
 			throws HibernateOperateException {
 
 		StringBuilder hql = new StringBuilder(
@@ -372,6 +380,10 @@ public class OwnPhoneOrderDAOImpl implements OwnPhoneOrderDAO {
 
 		if (price != null && !price.isEmpty()) {
 			hql.append(" and o.price=:price");
+		}
+
+		if (status != null && !status.isEmpty()) {
+			hql.append(" and o.status=:status");
 		}
 
 		if (ordertime != null && !ordertime.isEmpty()) {
@@ -407,6 +419,10 @@ public class OwnPhoneOrderDAOImpl implements OwnPhoneOrderDAO {
 
 			if (price != null && !price.isEmpty()) {
 				query.setParameter("price", price);
+			}
+
+			if (status != null && !status.isEmpty()) {
+				query.setParameter("status", status);
 			}
 
 			if (ordertime != null && !ordertime.isEmpty()) {

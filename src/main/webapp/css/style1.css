@@ -44,7 +44,7 @@
 	font-size: 38px;
 	color: #319ff3;
 	text-align: center;
-	font-family:华文行楷;
+	font-family: 华文行楷;
 	font-weight:bold;
 	border-radius: 0 0 25px 25px;
 		/* transparency */
@@ -67,10 +67,10 @@
 }
 
 .tab1 a:hover {
-	color: #319ff3;
+	color: #ff0000;
 	text-decoration: none;
 	font-size: 48px;
-	font-style: italic;
+	font-weight: bold;
 	padding: 10px;
 }
 
@@ -80,9 +80,10 @@
 	height: 60px;
 	padding: 5px;
 	font-size: 13px;
+	font-family: 微软雅黑;
+	font-weight:bold;
 	color: #319ff3;
 	text-align: center;
-	font-weight:bold;
 	border-radius: 0 0 20px 20px;
 		/* transparency */
 	opacity: 0.8;                /* Firefox, Safari(WebKit), Opera)
@@ -104,10 +105,10 @@
 }
 
 .tab2 a:hover {
-	color: #319ff3;
+	color: #ff0000;
 	text-decoration: none;
-	font-size: 15px;
-	font-style: italic;
+	font-size: 16px;
+	font-weight: bold;
 	padding: 5px;
 }
 
@@ -206,10 +207,8 @@
 }
 
 .navigloginfuction a:hover {
-	background-color: #319ff3;
-	color: #ffffff;
-	text-decoration: none;
-	font-style: italic;
+	color: #ff0000;
+	text-decoration: underline;
 	font-size: 14px;
 }
 
@@ -505,7 +504,6 @@ img {
 .modifyinfolist {
 	margin: 20px 50px;
 	float: left;
-	font-weight: bold;
 	color: rgb(18, 60, 135);
 	font-family: 微软雅黑;
 	font-size: 18px;
@@ -538,10 +536,9 @@ img {
 }
 
 .modifyinfolist a:hover {
-	background-color: #319ff3;
-	color: #ffffff;
+	color: #ff0000;
 	text-decoration: none;
-	font-style: italic;
+	font-weight: bold;
 }
 
 #modifyinfoiframe {
@@ -640,10 +637,12 @@ table.registertable tbody>tr>td {
 
 /* show result message page */
 .message {
+	border: 1px solid rgb(203, 213, 228);
 	font-size: 32px;
 	color: #ff0000;
 	font-family: "微软雅黑";
 	text-align: center;
+	width: 650px;
 }
 
 /* OwnPhoneOrder management */
@@ -654,6 +653,11 @@ table.registertable tbody>tr>td {
 	font-size: 15px;
 	color: #000000;
 	font-family: "微软雅黑";
+}
+
+.ownphoneorderlisttimetd {
+	font-size: 12px;
+	 width: 70px;
 }
 
 table.ownphoneorderlisttable tr>td {
@@ -680,7 +684,7 @@ table.ownphoneorderlisttable thead>tr>td {
 	font-weight: bold;
 	color: rgb(18, 60, 135);
 	font-family: 微软雅黑;
-	font-size: 20px;
+	font-size: 15px;
 }
 
 table.ownphoneorderlisttable tbody>tr:hover{
@@ -772,7 +776,7 @@ table.ownphoneorderquerytable tr>td{
 .paystep2 {
 	width: 650px;
 	font-family: 微软雅黑;
-	margin: 50px;
+	margin: 5px;
 	border: 1px solid rgb(203, 213, 228);
 	text-align: left;
 }
@@ -802,7 +806,7 @@ table.ownphoneorderquerytable tr>td{
 }
 
 #orderpriceinfo {
-	margin: 50px;
+	margin: 20px;
 }
 
 #orderpriceinfo table{
@@ -836,6 +840,14 @@ table.ownphoneorderquerytable tr>td{
 
 #payway table>tbody>tr>td{
 	padding: 20px;
+}
+
+#gotopay {
+	width: 650px;
+	font-family: 微软雅黑;
+	margin: 20px;
+	border: 1px solid rgb(203, 213, 228);
+	text-align: left;
 }
 
 #gotopay p{

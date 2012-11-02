@@ -23,6 +23,7 @@ public class OwnPhoneOrderQueryForm implements Serializable {
 	private String phonestyle;
 	private String emergency;
 	private String price;
+	private String status;
 	private String ordertime;
 
 	/**
@@ -157,6 +158,21 @@ public class OwnPhoneOrderQueryForm implements Serializable {
 	 */
 	public void setOrdertime(String ordertime) {
 		this.ordertime = ordertime;
+	}
+
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status
+	 *            the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

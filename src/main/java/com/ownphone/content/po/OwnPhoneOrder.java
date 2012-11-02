@@ -31,6 +31,7 @@ public class OwnPhoneOrder implements Serializable {
 	private String name;
 	private String emergency;
 	private String price;
+	private String status;
 	private String keyname1;
 	private String keynumber1;
 	private String keyname2;
@@ -582,6 +583,21 @@ public class OwnPhoneOrder implements Serializable {
 	 */
 	public void setModifytimemillis(Long modifytimemillis) {
 		this.modifytimemillis = modifytimemillis;
+	}
+
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status
+	 *            the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

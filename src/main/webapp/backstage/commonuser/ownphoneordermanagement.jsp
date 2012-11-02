@@ -43,43 +43,49 @@
 							<table class="ownphoneorderlisttable">
 								<thead>
 									<tr>
-										<th colspan="10">我的订单列表</th>
+										<th colspan="11">我的订单列表</th>
 									</tr>
 									<s:form name="ownPhoneOrderQuery" action="order!showCommonUserOwnPhoneOrders" 
 											method="post" theme="simple" >
 									<tr>
-										<td id="ownphoneorderquerytd" colspan="10">
+										<td id="ownphoneorderquerytd" colspan="11">
 											<table class="ownphoneorderquerytable">
 												<tr>
-													<td>排序类型：<br /><s:select name="ownPhoneOrderQuery.ordertype" 
+													<td>排序类型<br /><s:select name="ownPhoneOrderQuery.ordertype" 
 														value="%{#request.ownPhoneOrderQuery.ordertype}"
 														list="#{'orderedtime':'下单时间','modifiedtime':'修改时间'}" /></td>
-													<td>排序方向：<br /><s:select name="ownPhoneOrderQuery.orderdirection" 
+													<td>排序方向<br /><s:select name="ownPhoneOrderQuery.orderdirection" 
 														value="%{#request.ownPhoneOrderQuery.orderdirection}"
 														list="#{'increasing':'升序','descending':'降序'}" /></td>
-													<td>按键数量：<br /><s:select name="ownPhoneOrderQuery.keypad" 
+													<td>按键数量<br /><s:select name="ownPhoneOrderQuery.keypad" 
 														value="%{#request.ownPhoneOrderQuery.keypad}"
 														list="#{'':'所有','2':'2个','4':'4个','8':'8个','12':'12个'}" /></td>
-													<td>机身颜色：<br /><s:select name="ownPhoneOrderQuery.phonecolor" 
+													<td>机身颜色<br /><s:select name="ownPhoneOrderQuery.phonecolor" 
 														value="%{#request.ownPhoneOrderQuery.phonecolor}"
 														list="#{'':'所有','粉色':'粉色','蓝色':'蓝色','绿色':'绿色','红色':'红色','橘色':'橘色','黑色':'黑色'}" /></td>
-													<td>机身皮肤：<br /><s:select name="ownPhoneOrderQuery.phonestyle" 
+													<td>机身皮肤<br /><s:select name="ownPhoneOrderQuery.phonestyle" 
 														value="%{#request.ownPhoneOrderQuery.phonestyle}"
 														list="#{'':'所有','朴素':'朴素','图片':'图片','花纹':'花纹'}" /></td>
-													<td>紧急呼叫按键：<br /><s:select name="ownPhoneOrderQuery.emergency" 
+													<td>紧急呼叫<br /><s:select name="ownPhoneOrderQuery.emergency" 
 														value="%{#request.ownPhoneOrderQuery.emergency}"
 														list="#{'':'所有','有':'有','无':'无'}" /></td>
-													<td>手机价格：<br /><s:select name="ownPhoneOrderQuery.price" 
+													<td>手机价格<br /><s:select name="ownPhoneOrderQuery.price" 
 														value="%{#request.ownPhoneOrderQuery.price}"
 														list="#{'':'所有','200':'200RMB','250':'250RMB','350':'350RMB','450':'450RMB'}" /></td>
-													<td>下单时间：<br /><s:select name="ownPhoneOrderQuery.ordertime" 
+													<td>下单时间<br /><s:select name="ownPhoneOrderQuery.ordertime" 
 														value="%{#request.ownPhoneOrderQuery.ordertime}"
 														list="#{'':'所有','latestthreemonthes':'三个月内','threemonthesago':'三个月前'}" /></td>
-													<td>订单号查询：<br /><s:textfield name="ordernumberquery" size="11"
+													<td>订单状态<br /><s:select name="ownPhoneOrderQuery.status" 
+														value="%{#request.ownPhoneOrderQuery.status}"
+														list="#{'':'所有','待付款':'待付款','已付款':'已付款','出货中':'出货中','待客户签收':'待客户签收','交易完成':'交易完成'}" /></td>
+													<td>订单号查询<br /><s:textfield name="ordernumberquery" size="9"
 														 maxlength="12" value="%{#request.ordernumberquery}" /></td>	
 														
 													<td><s:hidden id="pagehiddenfield" name="page" value="1"/>
 														<input type="image" alt="搜索" src="<%=path%>/images/search.gif" /></td>
+												</tr>
+												<tr>
+													
 												</tr>
 											</table>
 										</td>
@@ -96,13 +102,15 @@
 										</td>
 										<td>手机<br />名字
 										</td>
-										<td>紧急呼叫<br />按键
+										<td>紧急呼<br />叫按键
 										</td>
 										<td>手机价格
 										</td>
 										<td>下单时间
 										</td>
 										<td>最近修改
+										</td>
+										<td>订单状态
 										</td>
 									</tr>
 								</thead>
@@ -125,14 +133,15 @@
 												Date orderDate = new Date(ownPhoneOrder.getOrdertimemillis().longValue());
 												Date modifyDate = new Date(ownPhoneOrder.getModifytimemillis().longValue());;
 											%>
-											<td><fmt:formatDate value="<%=orderDate%>" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-											<td><fmt:formatDate value="<%=modifyDate%>" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+											<td class="ownphoneorderlisttimetd"><fmt:formatDate value="<%=orderDate%>" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+											<td class="ownphoneorderlisttimetd"><fmt:formatDate value="<%=modifyDate%>" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+											<td>${ownPhoneOrder.status}</td>
 										</tr>
 									</c:forEach>
 								</tbody>
 								<tfoot>
 									<tr>
-										<td colspan="10">
+										<td colspan="11">
 											<span>总订单数：${requestScope.orderSize}</span>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											分页：

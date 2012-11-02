@@ -90,6 +90,8 @@ public interface OwnPhoneOrderDAO {
 	 *            emergency field condition.
 	 * @param price
 	 *            price field condition.
+	 * @param status
+	 *            status field condition.
 	 * @param ordertime
 	 *            ordertime field condition.
 	 * @return OwnPhoneOrders list whos belongtouseraccount field's value is
@@ -103,8 +105,8 @@ public interface OwnPhoneOrderDAO {
 	public List<OwnPhoneOrder> findOwnPhoneOrdersWithConditions(
 			String belongToUseraccount, int starts, int ends, String ordertype,
 			String orderdirection, String keypad, String phonecolor,
-			String phonestyle, String emergency, String price, String ordertime)
-			throws HibernateOperateException;
+			String phonestyle, String emergency, String price, String status,
+			String ordertime) throws HibernateOperateException;
 
 	/**
 	 * Find OwnPhoneOrder by ordernumber field in database.
@@ -160,6 +162,8 @@ public interface OwnPhoneOrderDAO {
 	 *            emergency field condition.
 	 * @param price
 	 *            price field condition.
+	 * @param status
+	 *            status field condition.
 	 * @param ordertime
 	 *            ordertime field condition.
 	 * @return the size of OwnPhoneOrders whos belongtouseraccount field value
@@ -171,6 +175,6 @@ public interface OwnPhoneOrderDAO {
 	 */
 	public int sizeOfOwnPhoneOrdersWithConditions(String belongToUseraccount,
 			String keypad, String phonecolor, String phonestyle,
-			String emergency, String price, String ordertime)
+			String emergency, String price, String status, String ordertime)
 			throws HibernateOperateException;
 }
