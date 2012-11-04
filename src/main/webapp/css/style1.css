@@ -542,13 +542,13 @@ img {
 }
 
 #modifyinfoiframe {
-	margin: 10px 20px;
+	margin: 50px 20px;
 	width: 65%;
 	float: left;
 }
 
 .modifyaccountinfotable {
-	margin: 50px 50px 50px 30px;
+	margin: 0 50px 0 30px;
 	border: 2px solid rgb(203, 213, 228);
 	font-size: 20px;
 	text-align: center;
@@ -570,7 +570,7 @@ table.modifyaccountinfotable tbody>tr>td {
 }
 
 .modifyaccountpasswordtable {
-	margin: 50px 50px 50px 30px;
+	margin: 0 50px 0 30px;
 	border: 2px solid rgb(203, 213, 228);
 	font-size: 20px;
 	text-align: center;
@@ -646,8 +646,18 @@ table.registertable tbody>tr>td {
 }
 
 /* OwnPhoneOrder management */
+#ownphoneorderlistiframe {
+	margin: 20px 0;
+	width: 100%;
+}
+
+.horizatal {
+	width: 970px;
+	border: 2px solid rgb(203, 213, 228);
+}
+
 .ownphoneorderlisttable {
-	margin: 40px;
+	margin: 40px 40px 20px 40px;
 	border-collapse: separate;
 	border: 5px solid rgb(203, 213, 228);
 	font-size: 15px;
@@ -717,18 +727,22 @@ table.ownphoneorderlisttable tfoot>tr>td a:hover{
 
 table.ownphoneorderlisttable #modifylink {
 	color: rgb(90, 7, 5);
+	text-decoration: underline;
 }
 
 table.ownphoneorderlisttable #modifylink a:link {
 	color: rgb(90, 7, 5);
+	text-decoration: underline;
 }
 
 table.ownphoneorderlisttable #modifylink a:visited {
 	color: rgb(90, 7, 5);
+	text-decoration: underline;
 }
 
 table.ownphoneorderlisttable #modifylink a:hover {
 	color: rgb(255, 0, 0);
+	text-decoration: underline;
 }
 
 table.ownphoneorderlisttable #separatedpage{

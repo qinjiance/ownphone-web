@@ -3,6 +3,7 @@
  */
 package com.ownphone.content.dao.impl;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -177,7 +178,7 @@ public class CommonUserDAOImpl implements CommonUserDAO {
 
 		String hql = "from CommonUser u where u.useraccount=:useraccount and u.password=:password";
 
-		List<IUser> list = null;
+		List<CommonUser> list = null;
 		try {
 			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
@@ -187,7 +188,7 @@ public class CommonUserDAOImpl implements CommonUserDAO {
 			query.setParameter("password", password);
 			query.setMaxResults(1);
 
-			list = (List<IUser>) query.list();
+			list = (List<CommonUser>) query.list();
 			session.getTransaction().commit();
 
 			return (list == null || list.size() == 0) ? false : true;
@@ -238,7 +239,7 @@ public class CommonUserDAOImpl implements CommonUserDAO {
 
 		String hql = "from CommonUser o where o.useraccount=:useraccount";
 
-		List<IUser> list = null;
+		List<CommonUser> list = null;
 		try {
 			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
@@ -246,7 +247,7 @@ public class CommonUserDAOImpl implements CommonUserDAO {
 			query.setParameter("useraccount", checkinguseraccount);
 			query.setMaxResults(1);
 
-			list = (List<IUser>) query.list();
+			list = (List<CommonUser>) query.list();
 			session.getTransaction().commit();
 
 			return (list == null || list.size() == 0) ? false : true;
@@ -257,6 +258,280 @@ public class CommonUserDAOImpl implements CommonUserDAO {
 			throw new HibernateOperateException(e.getMessage(), e);
 		}
 
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.ownphone.content.dao.CommonUserDAO#findCommonUserByUseraccount(java
+	 * .lang.String)
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public CommonUser findCommonUserByUseraccount(String useraccount)
+			throws HibernateOperateException {
+
+		String hql = "from CommonUser o where o.useraccount=:useraccount";
+
+		List<CommonUser> list = null;
+
+		try {
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session.beginTransaction();
+			Query query = session.createQuery(hql);
+			query.setParameter("useraccount", useraccount);
+			query.setMaxResults(1);
+
+			list = (List<CommonUser>) query.list();
+			session.getTransaction().commit();
+
+			return (list == null || list.size() == 0) ? null : list.get(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+
+			throw new HibernateOperateException(e.getMessage(), e);
+		}
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.ownphone.content.dao.CommonUserDAO#findCommonUsersWithConditions(int,
+	 * int, java.lang.String, java.lang.String, java.lang.String,
+	 * java.lang.String, java.lang.String, java.lang.String, java.lang.String,
+	 * java.lang.String)
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CommonUser> findCommonUsersWithConditions(int starts, int ends,
+			String ordertype, String orderdirection, String nickname,
+			String realname, String mobilephone, String email,
+			String privilege, String registertime)
+			throws HibernateOperateException {
+
+		int items = ends - starts + 1;
+
+		StringBuilder hql = new StringBuilder("from CommonUser o");
+
+		StringBuilder conditions = new StringBuilder();
+
+		if (nickname != null && !nickname.isEmpty()) {
+			conditions.append(" and o.nickname=:nickname");
+		}
+
+		if (realname != null && !realname.isEmpty()) {
+			conditions.append(" and o.realname=:realname");
+		}
+
+		if (mobilephone != null && !mobilephone.isEmpty()) {
+			conditions.append(" and o.mobilephone=:mobilephone");
+		}
+
+		if (email != null && !email.isEmpty()) {
+			conditions.append(" and o.email=:email");
+		}
+
+		if (privilege != null && !privilege.isEmpty()) {
+			conditions.append(" and o.privilege=:privilege");
+		}
+
+		if (registertime != null && !registertime.isEmpty()) {
+			if (registertime.equals("latestthreemonthes")) {
+				conditions.append(" and o.registertimemillis>=:starttime");
+			} else if (registertime.equals("threemonthesago")) {
+				conditions.append(" and o.registertimemillis<:endtime");
+			}
+		}
+
+		if (conditions.length() != 0) {
+			hql.append(" where").append(conditions.substring(4));
+		}
+
+		if (ordertype == null || ordertype.isEmpty()) {
+			hql.append(" order by o.useraccount");
+		} else if (ordertype.equals("account")) {
+			hql.append(" order by o.useraccount");
+		} else if (ordertype.equals("registertime")) {
+			hql.append(" order by o.registertimemillis");
+		} else {
+			hql.append(" order by o.useraccount");
+		}
+
+		if (orderdirection == null || orderdirection.isEmpty()) {
+			hql.append(" desc");
+		} else if (orderdirection.equals("descending")) {
+			hql.append(" desc");
+		} else if (orderdirection.equals("increasing")) {
+			;
+		} else {
+			;
+		}
+
+		List<CommonUser> list = null;
+		try {
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session.beginTransaction();
+			Query query = session.createQuery(hql.toString());
+			query.setFirstResult(starts);
+			query.setMaxResults(items);
+
+			if (nickname != null && !nickname.isEmpty()) {
+				query.setParameter("nickname", nickname);
+			}
+
+			if (realname != null && !realname.isEmpty()) {
+				query.setParameter("realname", realname);
+			}
+
+			if (mobilephone != null && !mobilephone.isEmpty()) {
+				query.setParameter("mobilephone", mobilephone);
+			}
+
+			if (email != null && !email.isEmpty()) {
+				query.setParameter("email", email);
+			}
+
+			if (privilege != null && !privilege.isEmpty()) {
+				query.setParameter("privilege", privilege);
+			}
+
+			if (registertime != null && !registertime.isEmpty()) {
+
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTimeInMillis(System.currentTimeMillis());
+				calendar.add(Calendar.MONTH, -3);
+				Long time = Long.valueOf(calendar.getTimeInMillis());
+
+				if (registertime.equals("latestthreemonthes")) {
+					query.setParameter("starttime", time);
+				} else if (registertime.equals("threemonthesago")) {
+					query.setParameter("endtime", time);
+				}
+			}
+
+			list = query.list(); // Do not use forcing cast, it will use
+									// ArrayList<> so that order result is
+									// invalid.
+
+			session.getTransaction().commit();
+
+			return (list == null || list.size() == 0) ? null : list;
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			session.getTransaction().rollback();
+
+			throw new HibernateOperateException(e.getMessage(), e);
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.ownphone.content.dao.CommonUserDAO#sizeOfCommonUsersWithConditions
+	 * (java.lang.String, java.lang.String, java.lang.String, java.lang.String,
+	 * java.lang.String, java.lang.String)
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public int sizeOfCommonUsersWithConditions(String nickname,
+			String realname, String mobilephone, String email,
+			String privilege, String registertime)
+			throws HibernateOperateException {
+
+		StringBuilder hql = new StringBuilder("from CommonUser o");
+
+		StringBuilder conditions = new StringBuilder();
+
+		if (nickname != null && !nickname.isEmpty()) {
+			conditions.append(" and o.nickname=:nickname");
+		}
+
+		if (realname != null && !realname.isEmpty()) {
+			conditions.append(" and o.realname=:realname");
+		}
+
+		if (mobilephone != null && !mobilephone.isEmpty()) {
+			conditions.append(" and o.mobilephone=:mobilephone");
+		}
+
+		if (email != null && !email.isEmpty()) {
+			conditions.append(" and o.email=:email");
+		}
+
+		if (privilege != null && !privilege.isEmpty()) {
+			conditions.append(" and o.privilege=:privilege");
+		}
+
+		if (registertime != null && !registertime.isEmpty()) {
+			if (registertime.equals("latestthreemonthes")) {
+				conditions.append(" and o.registertimemillis>=:starttime");
+			} else if (registertime.equals("threemonthesago")) {
+				conditions.append(" and o.registertimemillis<:endtime");
+			}
+		}
+
+		if (conditions.length() != 0) {
+			hql.append(" where").append(conditions.substring(4));
+		}
+
+		List<CommonUser> list = null;
+		try {
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session.beginTransaction();
+			Query query = session.createQuery(hql.toString());
+
+			if (nickname != null && !nickname.isEmpty()) {
+				query.setParameter("nickname", nickname);
+			}
+
+			if (realname != null && !realname.isEmpty()) {
+				query.setParameter("realname", realname);
+			}
+
+			if (mobilephone != null && !mobilephone.isEmpty()) {
+				query.setParameter("mobilephone", mobilephone);
+			}
+
+			if (email != null && !email.isEmpty()) {
+				query.setParameter("email", email);
+			}
+
+			if (privilege != null && !privilege.isEmpty()) {
+				query.setParameter("privilege", privilege);
+			}
+
+			if (registertime != null && !registertime.isEmpty()) {
+
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTimeInMillis(System.currentTimeMillis());
+				calendar.add(Calendar.MONTH, -3);
+				Long time = Long.valueOf(calendar.getTimeInMillis());
+
+				if (registertime.equals("latestthreemonthes")) {
+					query.setParameter("starttime", time);
+				} else if (registertime.equals("threemonthesago")) {
+					query.setParameter("endtime", time);
+				}
+			}
+
+			list = (List<CommonUser>) query.list();
+
+			session.getTransaction().commit();
+
+			return list == null ? 0 : list.size();
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			session.getTransaction().rollback();
+
+			throw new HibernateOperateException(e.getMessage(), e);
+		}
 	}
 
 }

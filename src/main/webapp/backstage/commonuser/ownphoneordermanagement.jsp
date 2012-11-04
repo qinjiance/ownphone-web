@@ -78,7 +78,7 @@
 													<td>订单状态<br /><s:select name="ownPhoneOrderQuery.status" 
 														value="%{#request.ownPhoneOrderQuery.status}"
 														list="#{'':'所有','待付款':'待付款','已付款':'已付款','出货中':'出货中','待客户签收':'待客户签收','交易完成':'交易完成'}" /></td>
-													<td>订单号查询<br /><s:textfield name="ordernumberquery" size="9"
+													<td>订单号查询<br /><s:textfield name="ordernumberquery" size="11"
 														 maxlength="12" value="%{#request.ordernumberquery}" /></td>	
 														
 													<td><s:hidden id="pagehiddenfield" name="page" value="1"/>
@@ -119,7 +119,7 @@
 										var="ownPhoneOrder" varStatus="status">
 										<tr>
 											<td>${status.index+1}</td>
-											<td id="modifylink"><a
+											<td id="modifylink"><a  title="点击查看订单信息"
 												href="<%=path%>/order!showOwnPhoneOrderByOrderNumber?orderNumber=${ownPhoneOrder.ordernumber}">
 													${ownPhoneOrder.ordernumber} </a></td>
 											<td>${ownPhoneOrder.keypad}个</td>
@@ -131,7 +131,7 @@
 											<% 
 												OwnPhoneOrder ownPhoneOrder = (OwnPhoneOrder)pageContext.getAttribute("ownPhoneOrder");
 												Date orderDate = new Date(ownPhoneOrder.getOrdertimemillis().longValue());
-												Date modifyDate = new Date(ownPhoneOrder.getModifytimemillis().longValue());;
+												Date modifyDate = new Date(ownPhoneOrder.getModifytimemillis().longValue());
 											%>
 											<td class="ownphoneorderlisttimetd"><fmt:formatDate value="<%=orderDate%>" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 											<td class="ownphoneorderlisttimetd"><fmt:formatDate value="<%=modifyDate%>" pattern="yyyy-MM-dd HH:mm:ss" /></td>
@@ -147,7 +147,6 @@
 											分页：
 											&nbsp;&nbsp;
 											<%
-												int orderSize = ((Integer) request.getAttribute("orderSize")).intValue();
 												int pageSize = ((Integer) request.getAttribute("pageSize")).intValue();
 												int currentPage = ((Integer) request.getAttribute("currentPage")).intValue();
 											
@@ -159,8 +158,7 @@
 											<% 					
 														}
 											%> 			
-														<a href="<%=path%>/order!showCommonUserOwnPhoneOrders?page=<%=i%>" 
-															onclick="document.getElementById('pagehiddenfield').value='<%=i%>'; 
+														<a href="" onclick="document.getElementById('pagehiddenfield').value='<%=i%>'; 
 															document.all.ownPhoneOrderQuery.submit();return false;">
 															<%=i%>
 														</a>
@@ -177,8 +175,7 @@
 														// 第1页
 														if (currentPage-3 >= 1) {
 											%>
-															<a href="<%=path%>/order!showCommonUserOwnPhoneOrders?page=1" 
-																	onclick="document.getElementById('pagehiddenfield').value='1'; 
+															<a href="" onclick="document.getElementById('pagehiddenfield').value='1'; 
 																	document.all.ownPhoneOrderQuery.submit();return false;">
 																1
 															</a>
@@ -201,8 +198,7 @@
 											<% 					
 																}
 											%>
-																<a href="<%=path%>/order!showCommonUserOwnPhoneOrders?page=<%=i%>" 
-																	onclick="document.getElementById('pagehiddenfield').value='<%=i%>'; 
+																<a href="" onclick="document.getElementById('pagehiddenfield').value='<%=i%>'; 
 																	document.all.ownPhoneOrderQuery.submit();return false;">
 																	<%=i%>
 																</a>
@@ -227,8 +223,7 @@
 											<%					
 															}
 											%>				
-															<a href="<%=path%>/order!showCommonUserOwnPhoneOrders?page=<%=pageSize%>" 
-																onclick="document.getElementById('pagehiddenfield').value='<%=pageSize%>'; 
+															<a href="" onclick="document.getElementById('pagehiddenfield').value='<%=pageSize%>'; 
 																document.all.ownPhoneOrderQuery.submit();return false;">
 																<%=pageSize%>
 															</a>

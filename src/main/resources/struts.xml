@@ -17,14 +17,14 @@
 			<result name="addfeedback">/showresultmessage.jsp</result>
 			<result name="validateaddingorderfailed">/portal/designyourownphone.jsp</result>
 			<result name="addordersuccess">/backstage/selectpayway.jsp</result>
-			
+
 			<!-- showCommonUserOwnPhoneOrders -->
 			<result name="findownphoneorderserror">/showresultmessage.jsp</result>
 			<result name="findcommonuserownphoneorderssuccess">/backstage/commonuser/ownphoneordermanagement.jsp
 			</result>
 
 			<!-- showAdministratorOwnPhoneOrders -->
-			<result name="findadminownphoneorderssuccess">/backstage/administrator/ownphoneordermanagement.jsp
+			<result name="findadminownphoneorderssuccess">/backstage/administrator/ownphoneorderlist.jsp
 			</result>
 
 			<!-- showOwnPhoneOrderByOrderNumber -->
@@ -70,6 +70,11 @@
 			</result>
 			<result name="validateoldpasswordfailed">/backstage/administrator/modifyaccountpassword.jsp
 			</result>
+
+			<!-- find all users -->
+			<result name="finduserserror">/showresultmessage.jsp</result>
+			<result name="finduserssuccess">/backstage/administrator/ownphoneordermanagement.jsp
+			</result>
 		</action>
 
 		<!-- CommonUser management -->
@@ -102,7 +107,7 @@
 			<result name="registersuccess">/showresultmessage.jsp</result>
 			<result name="registerfailed">/showresultmessage.jsp</result>
 			<result name="input">/portal/register.jsp</result>
-			
+
 			<!-- get captcha -->
 			<result name="getcaptchaimagesuccess" type="stream">
 				<param name="contentType">image/jpeg</param>

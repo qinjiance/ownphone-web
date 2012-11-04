@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" import="com.ownphone.content.po.IUser" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
@@ -71,7 +71,11 @@
 								<h1>（注意：请确认是您的账户后再购买！）</h1>
 								<h3>您的账户信息：</h3>
 								<h4>
-									用户名：<span style="font-weight: normal;">${sessionScope.loginAccount.useraccount}</span>
+								<%
+									IUser user = (IUser)session.getAttribute("loginAccount");
+									String account = user.fetchUseraccount();
+								%>
+									用户名：<span style="font-weight: normal;"><%=account%></span>
 								</h4>
 								<h4>
 									真实姓名：<span style="font-weight: normal;">${sessionScope.loginAccount.realname}</span>

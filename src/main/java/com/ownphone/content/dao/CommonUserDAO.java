@@ -3,6 +3,8 @@
  */
 package com.ownphone.content.dao;
 
+import java.util.List;
+
 import com.ownphone.content.bean.AccountInfoForm;
 import com.ownphone.content.bean.AccountPasswordForm;
 import com.ownphone.content.bean.LoginUserForm;
@@ -103,4 +105,69 @@ public interface CommonUserDAO {
 	public boolean isUseraccountExist(String checkinguseraccount)
 			throws HibernateOperateException;
 
+	/**
+	 * @param useraccount
+	 *            useraccount field will be used to find
+	 * @return CommonUser with useraccount matched. Otherwise, return null.
+	 * @throws HibernateOperateException
+	 *             every hibernate operation exceptions will be wrapped in this
+	 *             union exception.
+	 */
+	public CommonUser findCommonUserByUseraccount(String useraccount)
+			throws HibernateOperateException;
+
+	/**
+	 * Find CommonUsers with conditions, including top starts-ends, ordertype,
+	 * orderdirectory, nickname, realname, mobilephone, email,
+	 * privilege,registertime.
+	 * 
+	 * @param nickname
+	 *            nickname field condition.
+	 * @param realname
+	 *            realname field condition.
+	 * @param mobilephone
+	 *            mobilephone field condition.
+	 * @param email
+	 *            email field condition.
+	 * @param privilege
+	 *            privilege field condition.
+	 * @param registertime
+	 *            registertime field condition.
+	 * @return CommonUsers list fulfilled the conditions parameter, if no
+	 *         CommonUser fulfilled the conditions, it will return null.
+	 * @throws HibernateOperateException
+	 *             every hibernate operation exceptions will be wrapped in this
+	 *             union exception.
+	 */
+	public List<CommonUser> findCommonUsersWithConditions(int starts, int ends,
+			String ordertype, String orderdirection, String nickname,
+			String realname, String mobilephone, String email,
+			String privilege, String registertime)
+			throws HibernateOperateException;
+
+	/**
+	 * Find the size of CommonUsers with conditions, including nickname,
+	 * realname, mobilephone, email, privilege,registertime.
+	 * 
+	 * @param nickname
+	 *            nickname field condition.
+	 * @param realname
+	 *            realname field condition.
+	 * @param mobilephone
+	 *            mobilephone field condition.
+	 * @param email
+	 *            email field condition.
+	 * @param privilege
+	 *            privilege field condition.
+	 * @param registertime
+	 *            registertime field condition.
+	 * @return the size of CommonUsers fulfilled the condition parameters.
+	 * @throws HibernateOperateException
+	 *             every hibernate operation exceptions will be wrapped in this
+	 *             union exception.
+	 */
+	public int sizeOfCommonUsersWithConditions(String nickname,
+			String realname, String mobilephone, String email,
+			String privilege, String registertime)
+			throws HibernateOperateException;
 }

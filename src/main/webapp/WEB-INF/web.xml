@@ -78,11 +78,11 @@
 	<!-- Error-page Configuration -->
 	<error-page>
 		<error-code>404</error-code>
-		<location>/error_handler/handler_notfound.jsp</location>
+		<location>/error_handler/handler_notfound.html</location>
 	</error-page>
 	<error-page>
 		<error-code>500</error-code>
-		<location>/error_handler/handler_notfound.jsp</location>
+		<location>/error_handler/errorpage.html</location>
 	</error-page>
 </web-app>
 

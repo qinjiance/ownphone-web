@@ -17,24 +17,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
 <link type="text/css" rel="stylesheet" href="<%=path%>/css/style1.css" />
+<script type="text/javascript" src="<%=path%>/js/Iframe.js"></script>
 <title><%=location%></title>
-
-<script type="text/javascript">
-	function SetIframeHeight(obj) {
-		var win = obj;
-		if (document.getElementById) {
-			if (win && !window.opera) {
-				if (win.contentDocument
-						&& win.contentDocument.body.offsetHeight) {
-					win.height = win.contentDocument.body.offsetHeight;
-				} else if (win.Document && win.Document.body.scrollHeight) {
-					win.height = win.Document.body.scrollHeight;
-				}
-			}
-		}
-	}
-</script>
-
 </head>
 
 <body>
@@ -70,7 +54,7 @@
 								<iframe id="modifyinfoiframe" name="modifyinfo_iframe"
 									scrolling="no" frameborder="0"
 									src="<%=path%>/backstage/commonuser/modifyaccountinfo.jsp"
-									onload="Javascrip:SetIframeHeight(this)"></iframe>
+									onload="Javascript:SetIframeHeight(this)"></iframe>
 							</div>
 						</c:when>
 

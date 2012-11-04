@@ -3,6 +3,8 @@
  */
 package com.ownphone.content.dao;
 
+import java.util.List;
+
 import com.ownphone.content.bean.AccountInfoForm;
 import com.ownphone.content.bean.AccountPasswordForm;
 import com.ownphone.content.bean.LoginUserForm;
@@ -94,4 +96,69 @@ public interface AdministratorDAO {
 	public boolean isAdminaccountExist(String checkingadminaccount)
 			throws HibernateOperateException;
 
+	/**
+	 * @param adminaccount
+	 *            adminaccount field will be used to find
+	 * @return Administrator with adminaccount matched. Otherwise, return null.
+	 * @throws HibernateOperateException
+	 *             every hibernate operation exceptions will be wrapped in this
+	 *             union exception.
+	 */
+	public Administrator findAdministratorByAdminaccount(String adminaccount)
+			throws HibernateOperateException;
+	
+	/**
+	 * Find Administrators with conditions, including top starts-ends, ordertype,
+	 * orderdirectory, nickname, realname, mobilephone, email,
+	 * privilege,registertime.
+	 * 
+	 * @param nickname
+	 *            nickname field condition.
+	 * @param realname
+	 *            realname field condition.
+	 * @param mobilephone
+	 *            mobilephone field condition.
+	 * @param email
+	 *            email field condition.
+	 * @param privilege
+	 *            privilege field condition.
+	 * @param registertime
+	 *            registertime field condition.
+	 * @return Administrators list fulfilled the conditions parameter, if no
+	 *         Administrator fulfilled the conditions, it will return null.
+	 * @throws HibernateOperateException
+	 *             every hibernate operation exceptions will be wrapped in this
+	 *             union exception.
+	 */
+	public List<Administrator> findAdministratorsWithConditions(int starts, int ends,
+			String ordertype, String orderdirection, String nickname,
+			String realname, String mobilephone, String email,
+			String privilege, String registertime)
+			throws HibernateOperateException;
+
+	/**
+	 * Find the size of Administrators with conditions, including nickname,
+	 * realname, mobilephone, email, privilege,registertime.
+	 * 
+	 * @param nickname
+	 *            nickname field condition.
+	 * @param realname
+	 *            realname field condition.
+	 * @param mobilephone
+	 *            mobilephone field condition.
+	 * @param email
+	 *            email field condition.
+	 * @param privilege
+	 *            privilege field condition.
+	 * @param registertime
+	 *            registertime field condition.
+	 * @return the size of Administrators fulfilled the condition parameters.
+	 * @throws HibernateOperateException
+	 *             every hibernate operation exceptions will be wrapped in this
+	 *             union exception.
+	 */
+	public int sizeOfAdministratorsWithConditions(String nickname,
+			String realname, String mobilephone, String email,
+			String privilege, String registertime)
+			throws HibernateOperateException;
 }

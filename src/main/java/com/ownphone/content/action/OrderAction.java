@@ -20,7 +20,6 @@ import com.ownphone.content.bean.OwnPhoneOrderQueryForm;
 import com.ownphone.content.dao.HibernateOperateException;
 import com.ownphone.content.dao.OwnPhoneOrderDAO;
 import com.ownphone.content.dao.impl.OwnPhoneOrderDAOImpl;
-import com.ownphone.content.po.Administrator;
 import com.ownphone.content.po.CommonUser;
 import com.ownphone.content.po.IUser;
 import com.ownphone.content.po.OwnPhoneOrder;
@@ -183,7 +182,8 @@ public class OrderAction extends ActionSupport {
 				"page");
 
 		if (requestPageStr != null && !requestPageStr.isEmpty()) {
-			if (requestPageStr.matches("^\\d+$")) {
+			if (FormValidator
+					.validateStringUsingRegex(requestPageStr, "^\\d+$")) {
 				requestPage = Integer.valueOf(requestPageStr).intValue();
 			}
 		}
@@ -284,8 +284,8 @@ public class OrderAction extends ActionSupport {
 			return "validateloginfailed";
 		}
 
-		String adminaccount = ((Administrator) (session.get("loginAccount")))
-				.getAdminaccount();
+		String account = ServletActionContext.getRequest().getParameter(
+				"account");
 
 		final int ITEMS = 10;
 
@@ -295,7 +295,8 @@ public class OrderAction extends ActionSupport {
 				"page");
 
 		if (requestPageStr != null && !requestPageStr.isEmpty()) {
-			if (requestPageStr.matches("^\\d+$")) {
+			if (FormValidator
+					.validateStringUsingRegex(requestPageStr, "^\\d+$")) {
 				requestPage = Integer.valueOf(requestPageStr).intValue();
 			}
 		}
@@ -344,7 +345,7 @@ public class OrderAction extends ActionSupport {
 
 				// Query orders size
 				orderSize = Integer.valueOf(ownPhoneOrderDAO
-						.sizeOfOwnPhoneOrdersWithConditions(adminaccount,
+						.sizeOfOwnPhoneOrdersWithConditions(account,
 								ownPhoneOrderQuery.getKeypad(),
 								ownPhoneOrderQuery.getPhonecolor(),
 								ownPhoneOrderQuery.getPhonestyle(),
@@ -355,7 +356,7 @@ public class OrderAction extends ActionSupport {
 
 				// Query order list
 				ownPhoneOrderList = ownPhoneOrderDAO
-						.findOwnPhoneOrdersWithConditions(adminaccount, starts,
+						.findOwnPhoneOrdersWithConditions(account, starts,
 								ends, ownPhoneOrderQuery.getOrdertype(),
 								ownPhoneOrderQuery.getOrderdirection(),
 								ownPhoneOrderQuery.getKeypad(),
@@ -374,6 +375,7 @@ public class OrderAction extends ActionSupport {
 		Integer pageSize = Integer.valueOf((int) Math.ceil((double) orderSize
 				.intValue() / ITEMS));
 
+		request.put("account", account);
 		request.put("orderSize", orderSize);
 		request.put("pageSize", pageSize);
 		request.put("currentPage", Integer.valueOf(requestPage));

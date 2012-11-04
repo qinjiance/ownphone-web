@@ -3,16 +3,24 @@
  */
 package com.ownphone.content.action;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+
+import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.ownphone.content.bean.AccountInfoForm;
 import com.ownphone.content.bean.AccountPasswordForm;
+import com.ownphone.content.bean.UserQueryForm;
 import com.ownphone.content.dao.AdministratorDAO;
+import com.ownphone.content.dao.CommonUserDAO;
 import com.ownphone.content.dao.HibernateOperateException;
 import com.ownphone.content.dao.impl.AdministratorDAOImpl;
+import com.ownphone.content.dao.impl.CommonUserDAOImpl;
 import com.ownphone.content.po.Administrator;
+import com.ownphone.content.po.CommonUser;
 import com.ownphone.content.po.IUser;
 import com.ownphone.util.FormValidator;
 
@@ -30,6 +38,10 @@ public class AdministratorAction extends ActionSupport {
 	private Map<String, Object> session = ActionContext.getContext()
 			.getSession();
 
+	@SuppressWarnings("unchecked")
+	private Map<String, Object> request = (Map<String, Object>) ActionContext
+			.getContext().get("request");
+
 	/**
 	 * a form bean instance submitted by modifyaccountinfo.jsp
 	 */
@@ -41,6 +53,25 @@ public class AdministratorAction extends ActionSupport {
 	private AccountPasswordForm accountPassword;
 
 	private AdministratorDAO administratorDAO = new AdministratorDAOImpl();
+
+	private CommonUserDAO commonUserDAO = new CommonUserDAOImpl();
+
+	private UserQueryForm userQuery;
+
+	/**
+	 * @return the userQuery
+	 */
+	public UserQueryForm getUserQuery() {
+		return userQuery;
+	}
+
+	/**
+	 * @param userQuery
+	 *            the userQuery to set
+	 */
+	public void setUserQuery(UserQueryForm userQuery) {
+		this.userQuery = userQuery;
+	}
 
 	/**
 	 * 
@@ -77,6 +108,165 @@ public class AdministratorAction extends ActionSupport {
 	 */
 	public void setAccountPassword(AccountPasswordForm accountPassword) {
 		this.accountPassword = accountPassword;
+	}
+
+	/**
+	 * Find all users including administrators.
+	 * 
+	 * @return a string which point to the result page on struts.xml
+	 */
+	public String showAllUsers() {
+
+		if (!validateAdminLogin()) {
+			return "validateloginfailed";
+		}
+
+		final int ITEMS = 5;
+
+		int requestPage = 1;
+
+		String requestPageStr = ServletActionContext.getRequest().getParameter(
+				"page");
+
+		if (requestPageStr != null && !requestPageStr.isEmpty()) {
+			if (requestPageStr.matches("^\\d+$")) {
+				requestPage = Integer.valueOf(requestPageStr).intValue();
+			}
+		}
+
+		int starts = ITEMS * (requestPage - 1);
+		int ends = ITEMS * requestPage - 1;
+
+		String accountquery = null;
+		List<IUser> userList = null;
+		Integer userSize = null;
+		try {
+
+			// Query ordernumber
+			accountquery = ServletActionContext.getRequest().getParameter(
+					"accountquery");
+
+			if (accountquery != null && !accountquery.trim().isEmpty()) {
+
+				IUser user = commonUserDAO
+						.findCommonUserByUseraccount(accountquery);
+				if (user != null) {
+
+					userSize = Integer.valueOf(1);
+
+					userList = new LinkedList<IUser>();
+
+					userList.add(user);
+				} else {
+					user = administratorDAO
+							.findAdministratorByAdminaccount(accountquery);
+					if (user != null) {
+						userSize = Integer.valueOf(1);
+
+						userList = new LinkedList<IUser>();
+
+						userList.add(user);
+					} else {
+						userSize = Integer.valueOf(0);
+					}
+				}
+			} else {
+
+				if (userQuery == null) {
+
+					userQuery = new UserQueryForm();
+					userQuery.setOrdertype("account");
+					userQuery.setOrderdirection("increasing");
+				}
+
+				// Query users size
+				int commonUserSize = commonUserDAO
+						.sizeOfCommonUsersWithConditions(
+								userQuery.getNickname(),
+								userQuery.getRealname(),
+								userQuery.getMobilephone(),
+								userQuery.getEmail(), userQuery.getPrivilege(),
+								userQuery.getRegistertime());
+				int adminSize = administratorDAO
+						.sizeOfAdministratorsWithConditions(
+								userQuery.getNickname(),
+								userQuery.getRealname(),
+								userQuery.getMobilephone(),
+								userQuery.getEmail(), userQuery.getPrivilege(),
+								userQuery.getRegistertime());
+
+				userSize = Integer.valueOf(commonUserSize + adminSize);
+
+				// Query order list
+				userList = new LinkedList<IUser>();
+				List<CommonUser> commonUsersList = commonUserDAO
+						.findCommonUsersWithConditions(starts, ends,
+								userQuery.getOrdertype(),
+								userQuery.getOrderdirection(),
+								userQuery.getNickname(),
+								userQuery.getRealname(),
+								userQuery.getMobilephone(),
+								userQuery.getEmail(), userQuery.getPrivilege(),
+								userQuery.getRegistertime());
+
+				int commonUsersListSize = commonUsersList == null ? 0
+						: commonUsersList.size();
+
+				if (commonUsersList == null || commonUsersListSize < ITEMS) {
+
+					int commonUserTotalPages = (int) Math
+							.ceil((double) commonUserSize / ITEMS);
+					int commonUserLastPageItems = commonUserSize % ITEMS;
+					if (commonUserLastPageItems == 0) {
+						commonUserTotalPages++;
+					}
+
+					int adminStarts = ITEMS
+							* (requestPage - commonUserTotalPages)
+							- commonUserLastPageItems;
+					adminStarts = adminStarts <= 0 ? 0 : adminStarts;
+
+					int adminEnds = ITEMS
+							* (requestPage - commonUserTotalPages + 1) - 1
+							- commonUserLastPageItems;
+
+					List<Administrator> adminList = administratorDAO
+							.findAdministratorsWithConditions(adminStarts,
+									adminEnds, userQuery.getOrdertype(),
+									userQuery.getOrderdirection(),
+									userQuery.getNickname(),
+									userQuery.getRealname(),
+									userQuery.getMobilephone(),
+									userQuery.getEmail(),
+									userQuery.getPrivilege(),
+									userQuery.getRegistertime());
+					if (commonUsersList != null) {
+						userList.addAll(commonUsersList);
+					}
+
+					if (adminList != null) {
+						userList.addAll(adminList);
+					}
+				} else {
+					userList.addAll(commonUsersList);
+				}
+			}
+		} catch (HibernateOperateException e) {
+			this.addActionMessage("操作失败，请重试，或联系管理员。");
+			return "finduserserror";
+		}
+
+		Integer pageSize = Integer.valueOf((int) Math.ceil((double) userSize
+				.intValue() / ITEMS));
+
+		request.put("userSize", userSize);
+		request.put("pageSize", pageSize);
+		request.put("currentPage", Integer.valueOf(requestPage));
+		request.put("accountquery", accountquery);
+		request.put("userQuery", userQuery);
+		request.put("userListToShow", userList);
+
+		return "finduserssuccess";
 	}
 
 	/**

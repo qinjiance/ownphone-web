@@ -27,8 +27,7 @@
 	if (message != null) {
 %>
 <script language="javascript" type="text/javascript">
-	location.href = "<%=path%>
-	/logout.jsp";
+	location.href = "<%=path%>/logout.jsp";
 </script>
 <%
 	}
@@ -122,7 +121,7 @@
 							<td>||</td>
 
 							<td class="navigloginfuction"><a
-								href="<%=path%>/order!showCommonUserOwnPhoneOrders?page=1">我的订单管理</a></td>
+								href="<%=path%>/order!showCommonUserOwnPhoneOrders">我的订单管理</a></td>
 
 							<td>||</td>
 
@@ -147,7 +146,7 @@
 							<td>||</td>
 
 							<td class="navigloginfuction"><a
-								href="<%=path%>/order!showAdministratorOwnPhoneOrders?page=1">我的订单管理</a></td>
+								href="<%=path%>/administrator!showAllUsers">订单管理</a></td>
 
 							<td>||</td>
 
