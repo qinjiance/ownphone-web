@@ -786,6 +786,256 @@ table.ownphoneorderquerytable tr>td{
 	border-right: 1px solid white;
 }
 
+/* ownphoneorder review page */
+.reviewdiv {
+	margin: 50px;
+	width: 400px;
+	height: 700px;
+	border: 0;
+	padding: 0;
+	display: none;
+	position: relative;
+}
+
+.reviewdiv img{
+	width: 400px;
+	height: 700px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.reviewdiv h1{
+	margin: 0;
+	text-align: center;
+	border: 0;
+	pading: 0;
+	font-family: 微软雅黑;
+	color: #000000;
+}
+
+#ownphonename {
+	margin: 0;
+	text-align: center;
+	border: 0;
+	pading: 0;
+	font-family: 微软雅黑;
+	color: #000000;
+	font-weight: bold;
+	width: 300px;
+	font-size: 38px;
+	position: absolute;
+	top: 18%;
+	left: 9%;
+}
+
+#keypad2 h1{
+	font-size: 48px;
+	width: 300px;
+}
+
+#keypad2_number1 {
+	position: absolute;
+	top: 45%;
+	left: 11%;
+}
+
+#keypad2_number2 {
+	position: absolute;
+	top: 66%;
+	left: 11%;
+}
+
+#keypad4 h1{
+	font-size: 40px;
+	width: 300px;
+}
+
+#keypad4_number1 {
+	position: absolute;
+	top: 43%;
+	left: 11%;
+}
+
+#keypad4_number2 {
+	position: absolute;
+	top: 56%;
+	left: 11%;
+}
+
+#keypad4_number3 {
+	position: absolute;
+	top: 69%;
+	left: 11%;
+}
+
+#keypad4_number4 {
+	position: absolute;
+	top: 82%;
+	left: 11%;
+}
+
+#keypad8 h1{
+	font-size: 32px;
+	width: 150px;
+}
+
+#keypad8_number1 {
+	position: absolute;
+	top: 43%;
+	left: 7%;
+}
+
+#keypad8_number2 {
+	position: absolute;
+	top: 56%;
+	left: 7%;
+}
+
+#keypad8_number3 {
+	position: absolute;
+	top: 69%;
+	left: 7%;
+}
+
+#keypad8_number4 {
+	position: absolute;
+	top: 82%;
+	left: 7%;
+}
+
+#keypad8_number5 {
+	position: absolute;
+	top: 43%;
+	left: 55%;
+}
+
+#keypad8_number6 {
+	position: absolute;
+	top: 56%;
+	left: 55%;
+}
+
+#keypad8_number7 {
+	position: absolute;
+	top: 69%;
+	left: 55%;
+}
+
+#keypad8_number8 {
+	position: absolute;
+	top: 82%;
+	left: 55%;
+}
+
+#keypad12 h1{
+	font-size: 20px;
+	width: 80px;
+}
+
+#keypad12_number1 {
+	position: absolute;
+	top: 44%;
+	left: 13%;
+}
+
+#keypad12_number2 {
+	position: absolute;
+	top: 57%;
+	left: 13%;
+}
+
+#keypad12_number3 {
+	position: absolute;
+	top: 70%;
+	left: 13%;
+}
+
+#keypad12_number4 {
+	position: absolute;
+	top: 83%;
+	left: 13%;
+}
+
+#keypad12_number5 {
+	position: absolute;
+	top: 44%;
+	left: 39%;
+}
+
+#keypad12_number6 {
+	position: absolute;
+	top: 57%;
+	left: 39%;
+}
+
+#keypad12_number7 {
+	position: absolute;
+	top: 70%;
+	left: 39%;
+}
+
+#keypad12_number8 {
+	position: absolute;
+	top: 83%;
+	left: 39%;
+}
+
+#keypad12_number9 {
+	position: absolute;
+	top: 44%;
+	left: 66%;
+}
+
+#keypad12_number10 {
+	position: absolute;
+	top: 57%;
+	left: 66%;
+}
+
+#keypad12_number11 {
+	position: absolute;
+	top: 70%;
+	left: 66%;
+}
+
+#keypad12_number12 {
+	position: absolute;
+	top: 83%;
+	left: 66%;
+}
+
+#modifyandpayul {
+	width: 500px;
+	list-style-type: none;
+	margin: 50px;
+}
+
+#modifyandpayul h3{
+	margin: 0;
+	padding: 10px;
+	font-family: 微软雅黑;
+	text-align: center;
+}
+
+#modifylist {
+	cursor: pointer;
+	float: left;
+	width: 140px;
+	background-color: rgb(203, 213, 228);
+	color: rgb(18, 60, 135);
+	border-radius: 15px;
+}
+
+#paylist {
+	cursor: pointer;
+	float: right;
+	width: 140px;
+	background-color: rgb(203, 213, 228);
+	color: rgb(18, 60, 135);
+	border-radius: 15px;
+}
+
 /* payment step2 page */
 .paystep2 {
 	width: 650px;

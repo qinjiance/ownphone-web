@@ -145,16 +145,16 @@ public class OrderAction extends ActionSupport {
 		} else {
 			request.put("ownPhoneOrderToShow", foundOwnPhoneOrder);
 
-			String privilege = ((IUser) session.get("loginAccount"))
-					.fetchPrivilege();
+			if (!foundOwnPhoneOrder.getBelongtouseraccount().equals(
+					((IUser) session.get("loginAccount")).fetchUseraccount())
+					|| !foundOwnPhoneOrder.getStatus().equals(
+							OwnPhoneOrderUtil.ORDER_STATUS_NOPAY)) {
 
-			if (privilege.equals("common")) {
-				return "findownphoneordersuccess";
-			} else if (privilege.equals("admin")) {
-				return "findownphoneordersuccess";
+				request.put("modifyPermission", "no");
+				return "findownphoneordersuccessandcannotmodify";
 			} else {
-				this.addActionMessage("用户权限错误，请重试，或联系管理员。");
-				return "privilegeerror";
+
+				return "findownphoneordersuccess";
 			}
 		}
 
@@ -465,6 +465,44 @@ public class OrderAction extends ActionSupport {
 	}
 
 	/**
+	 * Find the requested OwnPhoneOrder, then dispatch request to the
+	 * selectpayway.jsp
+	 */
+	public String selectPayway() {
+
+		if (!validateLogin()) {
+			return "validateloginfailed";
+		}
+
+		String requestOrderNumber = ServletActionContext.getRequest()
+				.getParameter("orderNumber");
+
+		if (requestOrderNumber == null || "".equals(requestOrderNumber)) {
+			this.addActionMessage("请求失败，请重新选择，或联系管理员");
+			return "requesterror";
+		}
+
+		OwnPhoneOrder foundOwnPhoneOrder;
+		try {
+			foundOwnPhoneOrder = ownPhoneOrderDAO
+					.findOwnPhoneOrderByOrderNumber(Long
+							.valueOf(requestOrderNumber));
+		} catch (HibernateOperateException e) {
+			this.addActionMessage("操作失败，请重新选择，或联系管理员");
+			return "findownphoneordererror";
+		}
+
+		if (foundOwnPhoneOrder == null) {
+			this.addActionMessage("该订单不存在，请重新选择，或联系管理员");
+			return "ownphoneordernotexisted";
+		} else {
+			request.put("ownPhoneOrderToShow", foundOwnPhoneOrder);
+
+			return "selectpaywaysuccess";
+		}
+	}
+
+	/**
 	 * Modify a OwnPhoneOrder existed in database, then dispatch request to the
 	 * result page.
 	 * 
@@ -552,17 +590,8 @@ public class OrderAction extends ActionSupport {
 
 		if (!validateOwnPhoneOrder(modifyingOwnPhoneOrder,
 				"modifyingOwnPhoneOrder")) {
-			String privilege = ((IUser) session.get("loginAccount"))
-					.fetchPrivilege();
 
-			if (privilege.equals("common")) {
-				return "validatemodifyingorderfailed";
-			} else if (privilege.equals("admin")) {
-				return "validatemodifyingorderfailed";
-			} else {
-				this.addActionMessage("用户权限错误，请重试，或联系管理员。");
-				return "privilegeerror";
-			}
+			return "validatemodifyingorderfailed";
 		}
 
 		Long systemCurrentTimeMillis = Long.valueOf(System.currentTimeMillis());
@@ -570,6 +599,7 @@ public class OrderAction extends ActionSupport {
 
 		if (ownPhoneOrderDAO.updateOwnPhoneOrder(foundOwnPhoneOrder)) {
 			this.addActionMessage("订单修改成功！");
+			return "modifysuccess";
 		} else {
 			this.addActionMessage("操作失败，请重新操作，或联系管理员");
 		}

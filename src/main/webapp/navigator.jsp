@@ -14,10 +14,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
 <link type="text/css" rel="stylesheet" href="<%=path%>/css/style1.css" />
-<link rel="shortcut icon" href="<%=path%>/images/favicon.ico"
-	type="image/x-icon" />
-<link rel="icon" href="<%=path%>/images/animated_favicon1.gif"
-	type="image/gif" />
+<link rel="shortcut icon" href="<%=path%>/images/favicon.ico" type="image/x-icon" />
+<link rel="icon" href="<%=path%>/images/animated_favicon1.gif" type="image/gif" />
 <link rel="Bookmark" href="<%=path%>/images/favicon.ico" />
 <!-- struts2 style, can set the s:xxx's label to italic, also set them to red when field error occurs-->
 <s:head />

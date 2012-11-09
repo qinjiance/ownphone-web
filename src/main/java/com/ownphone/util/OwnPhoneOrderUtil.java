@@ -12,7 +12,7 @@ public class OwnPhoneOrderUtil {
 	/**
 	 * Order status represents a order is submitted but have not pay.
 	 */
-	public static final String ORDER_STATUS_NOPAY = "未付款";
+	public static final String ORDER_STATUS_NOPAY = "待付款";
 
 	/**
 	 * Order status represents a order is payed but have not deliver.

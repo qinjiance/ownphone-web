@@ -9,14 +9,11 @@
 		<action name="order" class="com.ownphone.content.action.OrderAction">
 			<!-- login validation -->
 			<result name="validateloginfailed">/pleaselogin.jsp</result>
-
-			<!-- privilege error -->
-			<result name="privilegeerror">/showresuletmessage.jsp</result>
-
+			
 			<!-- addOwnPhoneOrder -->
 			<result name="addfeedback">/showresultmessage.jsp</result>
 			<result name="validateaddingorderfailed">/portal/designyourownphone.jsp</result>
-			<result name="addordersuccess">/backstage/selectpayway.jsp</result>
+			<result name="addordersuccess">/backstage/ownphoneorderreview.jsp</result>
 
 			<!-- showCommonUserOwnPhoneOrders -->
 			<result name="findownphoneorderserror">/showresultmessage.jsp</result>
@@ -32,12 +29,17 @@
 			<result name="findownphoneordererror">/showresultmessage.jsp</result>
 			<result name="findownphoneordersuccess">/backstage/modifyownphoneorder.jsp
 			</result>
+			<result name="findownphoneordersuccessandcannotmodify">/backstage/ownphoneorderreview.jsp</result>
 
 			<!-- modifyOwnPhoneOrder -->
 			<result name="validatemodifyingorderfailed">/backstage/modifyownphoneorder.jsp
 			</result>
 			<result name="ownphoneordernotexisted">/showresultmessage.jsp</result>
 			<result name="modifyfeedback">/showresultmessage.jsp</result>
+			<result name="modifysuccess">/backstage/ownphoneorderreview.jsp</result>
+			
+			<!-- selectPayway -->
+			<result name="selectpaywaysuccess">/backstage/selectpayway.jsp</result>
 		</action>
 
 		<!-- Login management -->

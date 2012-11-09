@@ -49,7 +49,10 @@
 							<table class="designtable">
 								<thead>
 									<tr>
-										<th colspan="2">订单号：${ownPhoneOrderToShow.ordernumber}</th>
+										<th colspan="2">订单号：${requestScope.ownPhoneOrderToShow.ordernumber}</th>
+									</tr>
+									<tr>
+										<th colspan="2">所属用户：${requestScope.ownPhoneOrderToShow.belongtouseraccount}</th>
 									</tr>
 									<%
 										OwnPhoneOrder modifyingOwnPhoneOrder = (OwnPhoneOrder) request
@@ -346,7 +349,7 @@
 										<li id="gobacklist"
 											onclick="showThenHide('designownphonelist','ownphoneorderform')"><h3>更改外观</h3></li>
 										<li id="submitlist"
-											onclick="document.getElementById('ownphoneorderform').submit();"><h3>提交订单</h3></li>
+											onclick="document.getElementById('ownphoneorderform').submit();"><h3>提交修改</h3></li>
 										<li class="clear"></li>
 									</ul>
 								</c:if>
