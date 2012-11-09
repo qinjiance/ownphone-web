@@ -498,7 +498,17 @@ public class OrderAction extends ActionSupport {
 		} else {
 			request.put("ownPhoneOrderToShow", foundOwnPhoneOrder);
 
-			return "selectpaywaysuccess";
+			if (!foundOwnPhoneOrder.getBelongtouseraccount().equals(
+					((IUser) session.get("loginAccount")).fetchUseraccount())
+					|| !foundOwnPhoneOrder.getStatus().equals(
+							OwnPhoneOrderUtil.ORDER_STATUS_NOPAY)) {
+
+				this.addActionMessage("操作失败，该订单已付款");
+				return "selectpaywayfailed";
+				
+			} else {
+				return "selectpaywaysuccess";
+			}
 		}
 	}
 

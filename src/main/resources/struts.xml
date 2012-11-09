@@ -39,6 +39,7 @@
 			<result name="modifysuccess">/backstage/ownphoneorderreview.jsp</result>
 			
 			<!-- selectPayway -->
+			<result name="selectpaywayfailed">/showresultmessage.jsp</result>
 			<result name="selectpaywaysuccess">/backstage/selectpayway.jsp</result>
 		</action>
 
